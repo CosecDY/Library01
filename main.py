@@ -20,4 +20,4 @@ while running:
 pygame.quit()
 
 
-def start_game():
+def start_game()
