@@ -45,10 +45,10 @@ def is_valid_login(username, password):
     return False
 
 def is_valid_admin(username, password):
-    with open('user_data.csv', 'r', newline='') as csvfile:
+    with open('amid_dataa.csv', 'r', newline='') as csvfile:
         csvreader = csv.reader(csvfile)
         for row in csvreader:
-            if row[0] == "admin" and row[1] == "88888888":
+            if row[0] == username and row[1] == password:
                 return True
     return False
 
