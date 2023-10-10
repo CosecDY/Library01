@@ -1,5 +1,11 @@
+import csv
 Users = {}
 status = ""
+
+def account ():
+    with open("account.csv","w",newline="") as f:
+        fw = csv.writer(f)
+        fw
 
 def Users_login ():
     print(" wellcome ")
