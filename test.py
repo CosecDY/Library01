@@ -119,7 +119,7 @@ if __name__ == "__main__":
 
         if user_type == '1':
             users_main()
-        if user_type == '2':
+        elif user_type == '2':
             admin_username = input("Enter admin Username: ")
             admin_password = input("Enter admin password: ")
 
