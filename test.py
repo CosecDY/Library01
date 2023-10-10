@@ -12,20 +12,24 @@ def register():
     # ตรวจสอบว่า Username ซ้ำหรือไม่
     if is_username_duplicate(username):
         print("duplicate Username")
+        print("-------------------------------------------------")
     else:
         with open('user_data.csv', 'a', newline='') as csvfile:
             csvwriter = csv.writer(csvfile)
             csvwriter.writerow([username, password])
+         
         print("succeed register")
-
+        print("-------------------------------------------------")   
 def login():
     username = input("Enter Username: ")
     password = input("Enter Password: ")
 
     if is_valid_login(username, password):
         print("suceed login")
+        print("-------------------------------------------------")
     else:
         print("wromg username or password")
+        print("-------------------------------------------------")
 
 def forgot_password():
     username = input("Enter Old Username: ")
@@ -48,8 +52,10 @@ def forgot_password():
             csvwriter.writerows(rows)
 
         print("succeed change password")
+        print("-------------------------------------------------")
     else:
         print("Username invalid")
+        print("-------------------------------------------------")
 
 def is_username_duplicate(username):
     with open('user_data.csv', 'r', newline='') as csvfile:
@@ -76,16 +82,21 @@ def users_main():
         choice = input("Enter : ")
 
         if choice == '1':
+            print("-------------------------------------------------")
             register()
         elif choice == '2':
+            print("-------------------------------------------------")
             login()
         elif choice == '3':
+            print("-------------------------------------------------")
             forgot_password()
         elif choice == '4':
             print("out of user Interface")
+            print("-------------------------------------------------")
             break
         else:
             print("please choice")
+            print("-------------------------------------------------")
 
 def admin_menu():
     while True:
@@ -98,12 +109,16 @@ def admin_menu():
         if admin_choice == '1':
             # เพิ่มโค้ดเพิ่มผู้ใช้ หรืออะไรที่คุณต้องการ
             pass
+            
         elif admin_choice == '2':
             # เพิ่มโค้ดลบผู้ใช้ หรืออะไรที่คุณต้องการ
             pass
+            
         elif admin_choice == '3':
             # เพิ่มโค้ดดูรายชื่อผู้ใช้ หรืออะไรที่คุณต้องการ
             pass
+            
+        
         elif admin_choice == '4':
             print("ออกจากโปรแกรมแอดมิน")
             break
@@ -116,17 +131,22 @@ if __name__ == "__main__":
         print("2. admin Interface")
         print("3. Exit")
         user_type = input("Enter : ")
+        
 
         if user_type == '1':
+            print("-------------------------------------------------")
             users_main()
-        if user_type == '2':
+            
+        elif user_type == '2':
             admin_username = input("Enter admin Username: ")
             admin_password = input("Enter admin password: ")
-
+            print("-------------------------------------------------")
             if is_admin(admin_username, admin_password):
+                
                 admin_menu()
             else:
                 print("worng password")
+
         elif user_type == '3':
             print("Exit")
             break
