@@ -31,7 +31,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -39,7 +38,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -47,7 +45,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -55,7 +52,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -63,7 +59,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -71,7 +66,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -79,7 +73,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -87,7 +80,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         },
         {
@@ -95,7 +87,6 @@ function createFeaturedBooks() {
             writer: 'John Deo',
             categories: 'Thriller, Horror, Romance',
             price: '$25.50',
-            discountPrice: '$28.60',
             learnMoreLink: '#'
         }
     ];
@@ -142,7 +133,7 @@ function createFeaturedBooks() {
 
         const bookPrice = document.createElement('p');
         bookPrice.className = 'book_price';
-        bookPrice.innerHTML = `${bookInfo.price}<sub><del>${bookInfo.discountPrice}</del></sub>`;
+        bookPrice.innerHTML = `${bookInfo.price}<sub><del>`;
 
         const learnMoreLink = document.createElement('a');
         learnMoreLink.className = 'f_btn';
