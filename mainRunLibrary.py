@@ -9,7 +9,7 @@ def index():
 # รายการข้อมูลหนังสือในรูปแบบของออบเจกต์ Python
 book_data = [
     {
-        "imgSrc": "image/book_1.jpg",
+        "imgSrc": "static/image/book_1.jpg",
         "writer": "John Deo",
         "categories": "Thriller, Horror, Romance",
         "price": "$25.50",
