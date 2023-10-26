@@ -25,13 +25,8 @@ def main_user():
         print("4 : Exit ")
         choice = input("Choose : ")
 
-        if(choice == '1'):
 
-        elif(choice == '1'):
-            
-           
-    username = input("Username : ")
-    password = input("password : ")
+        
 
 
    

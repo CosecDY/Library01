@@ -1,26 +1,26 @@
 import os
 
 class Book:
-    def __init__(self, bookId, nameBook, author, category, imageId ,price):
+    def __init__(self, bookId, nameBook, availableQuantity, author, category ,price ,totalLikes):
         self.bookId = bookId
         self.nameBook = nameBook
         self.author = author
-        self.available = True
+        self.availableQuantity = availableQuantity
         self.category = category
-        self.imageId = imageId
         self.price = price
+        self.totalLikes = totalLikes
 
     def to_json(self):
         return {
             'bookId': self.bookId,
             'nameBook': self.nameBook,
-            'author': self.author,
-            'available': self.available,
-            'category': self.category,
-            'imageId': self.imageId,
-            'price': self.price
+            'writer': self.author,
+            'availableQuantity': self.availableQuantity,
+            'categories': self.category,
+            'price': self.price,
+            'totalLikes': self.totalLikes
         }
-
+    
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -154,36 +154,36 @@ class Library:
         except FileNotFoundError:
             print("Unable to open the file.")
 
-    def getbookIdsInCategory(self, category):
-        bookIds = []
-        self._getbookIdsInCategory(self.root, category, bookIds)
-        return bookIds
+    # def getbookIdsInCategory(self, category):
+    #     bookIds = []
+    #     self._getbookIdsInCategory(self.root, category, bookIds)
+    #     return bookIds
 
-    def _getbookIdsInCategory(self, node, category, bookIds):
-        if node is not None:
-            self._getbookIdsInCategory(node.left, category, bookIds)
-            if node.data.category == category:
-                bookIds.append(node.data.bookId)
-            self._getbookIdsInCategory(node.right, category, bookIds)
+    # def _getbookIdsInCategory(self, node, category, bookIds):
+    #     if node is not None:
+    #         self._getbookIdsInCategory(node.left, category, bookIds)
+    #         if node.data.category == category:
+    #             bookIds.append(node.data.bookId)
+    #         self._getbookIdsInCategory(node.right, category, bookIds)
 
-    def getAllBookNames(self):
-        bookNames = []
-        self._inOrderBookNames(self.root, bookNames)
-        return bookNames
+    # def getAllBookNames(self):
+    #     bookNames = []
+    #     self._inOrderBookNames(self.root, bookNames)
+    #     return bookNames
 
-    def _inOrderBookNames(self, node, bookNames):
-        if node is not None:
-            self._inOrderBookNames(node.left, bookNames)
-            bookNames.append(node.data.nameBook)
-            self._inOrderBookNames(node.right, bookNames)
+    # def _inOrderBookNames(self, node, bookNames):
+    #     if node is not None:
+    #         self._inOrderBookNames(node.left, bookNames)
+    #         bookNames.append(node.data.nameBook)
+    #         self._inOrderBookNames(node.right, bookNames)
 
-    def getAllbookIds(self):
-        bookIds = []
-        self._inOrderbookIds(self.root, bookIds)
-        return bookIds
+    # def getAllbookIds(self):
+    #     bookIds = []
+    #     self._inOrderbookIds(self.root, bookIds)
+    #     return bookIds
 
-    def _inOrderbookIds(self, node, bookIds):
-        if node is not None:
-            self._inOrderbookIds(node.left, bookIds)
-            bookIds.append(node.data.bookId)
-            self._inOrderbookIds(node.right, bookIds)
+    # def _inOrderbookIds(self, node, bookIds):
+    #     if node is not None:
+    #         self._inOrderbookIds(node.left, bookIds)
+    #         bookIds.append(node.data.bookId)
+    #         self._inOrderbookIds(node.right, bookIds)
