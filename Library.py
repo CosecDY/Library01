@@ -1,12 +1,25 @@
 import os
 
 class Book:
-    def __init__(self, bookId, nameBook, author, category):
+    def __init__(self, bookId, nameBook, author, category, imageId ,price):
         self.bookId = bookId
         self.nameBook = nameBook
         self.author = author
         self.available = True
         self.category = category
+        self.imageId = imageId
+        self.price = price
+
+    def to_json(self):
+        return {
+            'bookId': self.bookId,
+            'nameBook': self.nameBook,
+            'author': self.author,
+            'available': self.available,
+            'category': self.category,
+            'imageId': self.imageId,
+            'price': self.price
+        }
 
 class TreeNode:
     def __init__(self, data):

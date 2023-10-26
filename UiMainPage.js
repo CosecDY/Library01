@@ -1,4 +1,4 @@
-function createFeaturedBooks() {
+function createFeaturedBooks(bookData) {
     const featuredBooksContainer = document.createElement('div');
     featuredBooksContainer.className = 'featured_boks';
 
@@ -25,71 +25,71 @@ function createFeaturedBooks() {
     featuredBookBox.style.overflow = 'hidden';
     featuredBookBox.style.overflowX = 'scroll';
 
-    const bookData = [
-        {
-            imgSrc: 'image/book_1.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_2.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_3.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_4.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_5.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_5.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_5.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_5.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        },
-        {
-            imgSrc: 'image/book_5.jpg',
-            writer: 'John Deo',
-            categories: 'Thriller, Horror, Romance',
-            price: '$25.50',
-            learnMoreLink: '#'
-        }
-    ];
+    // const bookData = [
+    //     {
+    //         imgSrc: 'image/book_1.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_2.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_3.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_4.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_5.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_5.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_5.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_5.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     },
+    //     {
+    //         imgSrc: 'image/book_5.jpg',
+    //         writer: 'John Deo',
+    //         categories: 'Thriller, Horror, Romance',
+    //         price: '$25.50',
+    //         learnMoreLink: '#'
+    //     }
+    // ];
 
     bookData.forEach((bookInfo) => {
         const featuredBookCard = document.createElement('div');
@@ -157,9 +157,22 @@ function createFeaturedBooks() {
     return featuredBooksContainer;
 }
 
-// เพิ่มลงใน HTML
-const featuredBooks = createFeaturedBooks();
-document.body.appendChild(featuredBooks);
+window.onload = function() {
+    // ใช้ Fetch API เพื่อร้องข้อมูลจากเซิร์ฟเวอร์ Flask
+    fetch('/api/data')
+        .then(response => response.json())
+        .then(data => {
+            var bookData = data.message;
+
+            // สร้างหนังสือและเพิ่มลงใน HTML หลังจากได้รับข้อมูล
+            const featuredBooks = createFeaturedBooks(bookData);
+            document.body.appendChild(featuredBooks);
+        })
+        .catch(error => {
+            console.error('เกิดข้อผิดพลาดในการร้องข้อมูล:', error);
+        });
+};
+
 
 
 
