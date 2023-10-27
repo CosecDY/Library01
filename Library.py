@@ -149,9 +149,8 @@ class Library:
                         author = data[3]
                         price = float(data[4])
                         totalLikes = int(data[5])
-
                         imgSrc = f"static/image/book_{bookId}.jpg"
-            
+                    
                         book_info = {
                             "nameBook": nameBook,
                             "availableQuantity": available,
@@ -159,7 +158,8 @@ class Library:
                             "price": price,
                             "totalLikes": totalLikes,
                             "category": category,
-                            "imgSrc": imgSrc
+                            "imgSrc": imgSrc,
+                            "learnMoreLink":bookId
                         }
 
                         book_data_list.append(book_info)

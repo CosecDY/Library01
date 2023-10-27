@@ -56,7 +56,7 @@ function createFeaturedBooks(bookData, categories) {
       bookTag.className = 'featurde_book_tag';
   
       const h2 = document.createElement('h2');
-      h2.textContent = 'Featured Books';
+      h2.textContent = bookInfo.nameBook;
   
       const writer = document.createElement('p');
       writer.className = 'writer';
@@ -68,7 +68,7 @@ function createFeaturedBooks(bookData, categories) {
   
       const bookPrice = document.createElement('p');
       bookPrice.className = 'book_price';
-      bookPrice.innerHTML = `${bookInfo.price}<sub><del>`;
+      bookPrice.innerHTML = `${bookInfo.price} $<sub><del>`;
   
       const learnMoreLink = document.createElement('a');
       learnMoreLink.className = 'f_btn';
