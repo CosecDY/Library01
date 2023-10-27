@@ -1,8 +1,11 @@
 import os
 
 class Book:
-    def __init__(self, bookId, nameBook, availableQuantity, author, category ,price ,totalLikes):
-        self.bookId = bookId
+    nextBookId = 0  
+
+    def __init__(self, nameBook, availableQuantity, author, category, price, totalLikes):
+        self.bookId = Book.nextBookId  
+        Book.nextBookId += 1  
         self.nameBook = nameBook
         self.author = author
         self.availableQuantity = availableQuantity
@@ -20,6 +23,7 @@ class Book:
             'price': self.price,
             'totalLikes': self.totalLikes
         }
+
     
 class TreeNode:
     def __init__(self, data):
@@ -92,26 +96,35 @@ class Library:
 
         return node
 
-    def _minValueNode(self, node):
-        while node.left is not None:
-            node = node.left
-        return node.data
+    # def _minValueNode(self, node):
+    #     while node.left is not None:
+    #         node = node.left
+    #     return node.data
 
-    def borrow(self, bookId, category):
-        book = self.search(bookId)
-        if book and book.available:
-            book.available = False
-            self.save_to_file(category)
-            return True
-        return False
+    # def borrow(self, bookId, category):
+    #     book = self.search(bookId)
+    #     if book and book.available:
+    #         book.available = False
+    #         self.save_to_file(category)
+    #         return True
+    #     return False
 
-    def return_book(self, bookId, category):
-        book = self.search(bookId)
-        if book and not book.available:
-            book.available = True
-            self.save_to_file(category)
-            return True
-        return False
+    # def return_book(self, bookId, category):
+    #     book = self.search(bookId)
+    #     if book and not book.available:
+    #         book.available = True
+    #         self.save_to_file(category)
+    #         return True
+    #     return False
+    
+    def _inOrderTraversal(self, node, category, outputFile):
+        if node is not None:
+            self._inOrderTraversal(node.left, category, outputFile)
+            if node.data.category == category:
+                outputFile.write(
+                    f"{node.data.bookId},{node.data.nameBook},{node.data.availableQuantity},{node.data.author},{node.data.price},{node.data.totalLikes}\n"
+                )
+            self._inOrderTraversal(node.right, category, outputFile)
 
     def save_to_file(self, category):
         current_directory = os.getcwd()
@@ -122,35 +135,34 @@ class Library:
         except IOError:
             print("Unable to open the file.")
 
-    def _inOrderTraversal(self, node, category, outputFile):
-        if node is not None:
-            self._inOrderTraversal(node.left, category, outputFile)
-            if node.data.category == category:
-                outputFile.write(
-                    f"{node.data.nameBook},{node.data.available},{node.data.bookId},{node.data.author}\n"
-                )
-            self._inOrderTraversal(node.right, category, outputFile)
-
-    def load_from_file(self, category):
+    def load_from_file(self, category, book_data_list):
         current_directory = os.getcwd()
         try:
             file_path = os.path.join(current_directory, "ListBooks", category + ".txt")
             with open(file_path, "r") as inputFile:
-                self.root = None
                 for line in inputFile:
                     data = line.strip().split(",")
-                    if len(data) >= 4:
-                        bookId = int(data[2])
-                        nameBook = data[0]
+                    if len(data) >= 6:
+                        bookId = int(data[0])
+                        nameBook = data[1]
+                        available = int(data[2])
                         author = data[3]
-                        available = bool(data[1])
-                        bookCategory = category
+                        price = float(data[4])
+                        totalLikes = int(data[5])
 
-                        book = Book(bookId, nameBook, author, bookCategory)
-                        book.available = available
+                        imgSrc = f"static/image/book_{bookId}.jpg"
+            
+                        book_info = {
+                            "nameBook": nameBook,
+                            "availableQuantity": available,
+                            "author": author,
+                            "price": price,
+                            "totalLikes": totalLikes,
+                            "category": category,
+                            "imgSrc": imgSrc
+                        }
 
-                        newNode = TreeNode(book)
-                        self.root = self._insert(self.root, newNode, category)
+                        book_data_list.append(book_info)
         except FileNotFoundError:
             print("Unable to open the file.")
 
