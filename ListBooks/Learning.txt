@@ -1,6 +1,6 @@
 22,Mindset: The New Psychology of Success,633,Carol S. Dweck,99,100
 23,The Power of Habit: Why We Do What We Do in Life and Business,1164,Charles Duhigg,99,100
-24,How We Learn: The Surprising Truth About When, Where, and Why It Happens,652,Benedict Carey,99,100
+24,How We Learn: The Surprising Truth About When Where and Why It Happens,652,Benedict Carey,99,100
 25,The Art of Learning: An Inner Journey to Optimal Performance,661,josh Waitzkin,99,100
 26,Learning How to Learn,295,Barbara Oakle,99,100
 27,The Extended Mind: The Power of Thinking Outside the Brain,335,Annie Murphy Paul,99,100

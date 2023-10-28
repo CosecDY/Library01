@@ -138,7 +138,7 @@ class Library:
         current_directory = os.getcwd()
         try:
             file_path = os.path.join(current_directory, "ListBooks", category + ".txt")
-            with open(file_path, "r") as inputFile:
+            with open(file_path, "r" , encoding="utf-8") as inputFile:
                 for line in inputFile:
                     data = line.strip().split(",")
                     if len(data) >= 6:

@@ -133,8 +133,8 @@ function createFeaturedBooks(bookData, categories) {
 
     featuredBooksContainer.style.width = '100%';
     featuredBooksContainer.style.height = '100vh';
-    featuredBooksContainer.style.padding = '70px 0';
     featuredBooksContainer.style.overflowX = 'auto'; 
+    
 
     const h1 = document.createElement('h1');
     h1.textContent = categories;
@@ -149,6 +149,7 @@ function createFeaturedBooks(bookData, categories) {
     featuredBookBox.className = 'featured_book_box';
     featuredBookBox.style.display = 'flex';
     featuredBookBox.style.width = '100%';
+    featuredBookBox.style.height = '500px';
     featuredBookBox.style.padding = '0 20px';
     featuredBookBox.style.display = 'grid';
     featuredBookBox.style.overflow = 'hidden';
@@ -158,7 +159,7 @@ function createFeaturedBooks(bookData, categories) {
       const featuredBookCard = document.createElement('div');
       featuredBookCard.className = 'featured_book_card';
       featuredBookCard.style.width = '250px';
-      featuredBookCard.style.height = '390px';
+      featuredBookCard.style.height = '420px';
       featuredBookCard.style.textAlign = 'center';
       featuredBookCard.style.padding = '5px';
       featuredBookCard.style.border = '1px solid #919191';
@@ -176,6 +177,7 @@ function createFeaturedBooks(bookData, categories) {
       bookImage.className = 'featured_book_img';
       const img = document.createElement('img');
       img.src = bookInfo.imgSrc;
+      img.style.height = '240px'
       img.style.width = '170px';
   
       bookImage.appendChild(img);
@@ -183,7 +185,7 @@ function createFeaturedBooks(bookData, categories) {
       const bookTag = document.createElement('div');
       bookTag.className = 'featurde_book_tag';
   
-      const h2 = document.createElement('h3');
+      const h2 = document.createElement('h4');
       h2.textContent = bookInfo.nameBook;
   
       const writer = document.createElement('p');
@@ -203,9 +205,17 @@ function createFeaturedBooks(bookData, categories) {
       learnMoreLink.href = bookInfo.learnMoreLink;
       learnMoreLink.textContent = 'Learn More';
       learnMoreLink.addEventListener('click', function(event) {
-        event.preventDefault();  
+        event.preventDefault();
+        // ส่งคำร้องข้อมูลไปยัง Flask และรับข้อมูล
         sendDataToFlask(bookInfo, '/receive_data', function(responseData) {
-            console.log('รับข้อมูลจาก Flask:', responseData);
+            // กำหนดข้อมูลที่ได้รับจาก Flask ในหน้า UiBookPage.html
+            document.getElementById('bookImage').src = responseData.imgSrc;
+            document.getElementById('bookName').textContent = responseData.name;
+            document.getElementById('bookAuthor').textContent = 'Author: ' + responseData.author;
+            document.getElementById('bookLikes').textContent = 'Likes: ' + responseData.totalLikes;
+            document.getElementById('bookPrice').textContent = 'Price: ' + responseData.price;
+            // เปิดหน้า UiBookPage.html
+            window.location.href = '/path/to/UiBookPage.html';
         }, function(error) {
             console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
         });

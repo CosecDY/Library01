@@ -30,20 +30,17 @@
     
     <div class="row">
         <div class="column">
-<<<<<<< HEAD
-            <img src="{{bookData.imgSrc}}" alt="" width="165px" height="240px" class="center">
-=======
-            <img src="static/image/logo.png" alt="" width="70px" height="120px" class="center">
->>>>>>> 965f6fdd4e0d6f55bc07ca334efc0552f4c7cf8b
+            <img src="" alt="" width="165px" height="240px" class="center" id="bookImage">
         </div>
         <div class="column">
-            <h2>{{bookData.name}}</h2>
-            <h3>Author : {{bookData.author}}</h3>
-            <h5>Likes : {{bookData.totalLikes']}}</h5>
-            <h3>Price : {{bookData.price}}</h3>
+            <h2 id="bookName"></h2>
+            <h3 id="bookAuthor">Author: </h3>
+            <h5 id="bookLikes">Likes: </h5>
+            <h3 id="bookPrice">Price: </h3>
             <button type="button">ปุ่มโง่ๆ</button>
         </div>
     </div>
+    
     
     <!--<script  src="{{ url_for('static', filename='/script/UiBookPage.js') }}"></script>-->
 </body>
