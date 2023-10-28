@@ -95,6 +95,38 @@ fetch('/api/top_book_data')
   
 
 
+
+
+
+
+
+
+
+
+  function sendDataToFlask(data, url, successCallback, errorCallback) {
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('ไม่สามารถส่งข้อมูลไปยัง Flask');
+        }
+    })
+    .then(data => {
+        successCallback(data);
+    })
+    .catch(error => {
+        errorCallback(error);
+    });
+}
+
+
 function createFeaturedBooks(bookData, categories) {
     const featuredBooksContainer = document.createElement('div');
     featuredBooksContainer.className = 'featured_boks';
@@ -170,6 +202,14 @@ function createFeaturedBooks(bookData, categories) {
       learnMoreLink.className = 'f_btn';
       learnMoreLink.href = bookInfo.learnMoreLink;
       learnMoreLink.textContent = 'Learn More';
+      learnMoreLink.addEventListener('click', function(event) {
+        event.preventDefault();  
+        sendDataToFlask(bookInfo, '/receive_data', function(responseData) {
+            console.log('รับข้อมูลจาก Flask:', responseData);
+        }, function(error) {
+            console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
+        });
+    });
 
       const totalLikesElement = document.createElement('div');
       totalLikesElement.className = 'total_likes';
@@ -222,7 +262,7 @@ fetch('/api/book_data')
   });
   
 
-
+  
 
 
 

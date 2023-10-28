@@ -82,13 +82,21 @@ def search_books():
 
     group_items=[matched_books[i:i+5] for i in range(0,len(matched_books),5)]
     return render_template('SearchResults.html', data=group_items)
-    # return jsonify(data=matched_books)
- 
+
+receiveData = []
+
+@app.route('/receive_data', methods=['POST'])
+def receive_data():
+    data = request.get_json() 
+    global receiveData
+    receiveData = data.get('bookData')
+    return jsonify({'message': 'ข้อมูลได้รับแล้ว'})
 
 
-
-
-
+@app.route('/ui_book_page')
+def ui_book_page():
+    bookData =  receiveData
+    return render_template('UiBookPage.html', bookData=bookData)
 
 
 
