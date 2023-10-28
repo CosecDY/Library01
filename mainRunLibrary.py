@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, redirect, render_template, request
 from Library import *
 
 app = Flask(__name__)
@@ -56,6 +56,43 @@ topBookdata = calculate_top_books()
 @app.route('/api/top_book_data', methods=['GET'])
 def get_top_book_data():
     return jsonify(data=topBookdata)
+
+@app.route('/search', methods=['POST','GET'])
+def search_books():
+    search_text = request.form.get('search_text')
+    matched_books = []
+
+    # Search within each category
+    for category_data in book_data:
+        for book in category_data:
+            if search_text.lower() in book['nameBook'].lower():
+                matched_books.append(book)
+
+    # return matched_books
+    return render_template('SearchResults.html', data=matched_books)
+    # return jsonify(data=matched_books)
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,0 +1,85 @@
+/* Featured Books Container */
+.featured_books {
+    width: 100%;
+    height: 100vh;
+    padding: 70px 0;
+    overflow-x: auto;
+    text-align: center;
+}
+
+/* Featured Books Title */
+.featured_books h1 {
+    display: flex;
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 45px;
+}
+
+/* Featured Book Box */
+.featured_book_box {
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px; /* Adjust this for spacing between cards */
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+/* Featured Book Card */
+.featured_book_card {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #919191;
+    margin: 20px 0;
+    transition: box-shadow 0.3s ease;
+}
+
+.featured_book_card:hover {
+    box-shadow: 0 0 5px #089da1;
+}
+
+/* Featured Book Image */
+.featured_book_img img {
+    width: 150px;
+    height: auto; /* Maintain image aspect ratio */
+}
+
+/* Featured Book Tag */
+.featured_book_tag {
+    margin-top: 10px;
+}
+
+/* Writer */
+.writer {
+    font-weight: bold;
+}
+
+/* Categories */
+.categories {
+    font-style: italic;
+    color: #555;
+}
+
+/* Book Price */
+.book_price {
+    font-weight: bold;
+    color: #f00; /* Adjust the color as needed */
+}
+
+/* Learn More Link */
+.f_btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #089da1; /* Adjust the background color */
+    color: #fff;
+    text-decoration: none;
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.f_btn:hover {
+    background-color: #076c72; /* Adjust the hover background color */
+}
