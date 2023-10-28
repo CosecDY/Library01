@@ -42,12 +42,14 @@ function createTopBooks(bookData) {
     bookTag.className = 'top_book_tag';
     bookTag.style.display = 'flex';
     bookTag.style.justifyContent = 'space-between';
+    bookTag.style.alignItems = 'center';
     bookTag.style.margin = '10px 0';
   
     const bookInfoContainer = document.createElement('div');
     bookInfoContainer.className = 'book-info-container';
     bookInfoContainer.style.display = 'flex';
-    bookInfoContainer.style.justifyContent = 'space-between';
+    bookInfoContainer.style.justifyContent = 'space-evenly';
+    bookInfoContainer.style.alignItems = 'center';
     bookInfoContainer.style.width = '100%';
   
     const bookTitle = document.createElement("div");
@@ -57,6 +59,7 @@ function createTopBooks(bookData) {
     const bookCategory = document.createElement("div");
     bookCategory.className = "book-category";
     bookCategory.textContent = `Category: ${bookInfo.category}`;
+    bookCategory.style.margin = '0 auto';
   
     const bookLikes = document.createElement("div");
     bookLikes.className = "book-likes";
@@ -141,14 +144,14 @@ function createFeaturedBooks(bookData, categories) {
       bookImage.className = 'featured_book_img';
       const img = document.createElement('img');
       img.src = bookInfo.imgSrc;
-      img.style.width = '150px';
+      img.style.width = '170px';
   
       bookImage.appendChild(img);
   
       const bookTag = document.createElement('div');
       bookTag.className = 'featurde_book_tag';
   
-      const h2 = document.createElement('h2');
+      const h2 = document.createElement('h3');
       h2.textContent = bookInfo.nameBook;
   
       const writer = document.createElement('p');
