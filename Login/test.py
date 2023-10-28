@@ -136,10 +136,7 @@ if __name__ == "__main__":
         if user_type == '1':
             print("-------------------------------------------------")
             users_main()
-<<<<<<< HEAD
             
-=======
->>>>>>> 8f1dbddee2e222e5a88543c52c2e709d75dc18b8
         elif user_type == '2':
             admin_username = input("Enter admin Username: ")
             admin_password = input("Enter admin password: ")
