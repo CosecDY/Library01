@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template, request
+from flask import Flask, jsonify, render_template
 from Library import *
 
 app = Flask(__name__)
@@ -36,6 +36,26 @@ book_data.append(book_data_Romance)
 @app.route('/api/book_data', methods=['GET'])
 def get_book_data():
     return jsonify(data=book_data)
+
+def calculate_top_books():
+    all_books = []
+    categories = ["Comic", "Fiction", "Horror", "Learning", "Romance"]
+    
+    for category in categories:
+        category_books = eval(f'book_data_{category}')
+        all_books.extend(category_books)
+    
+    all_books.sort(key=lambda book: book['totalLikes'], reverse=True)
+    
+    top_books = all_books[:5]
+    
+    return top_books
+
+topBookdata = calculate_top_books()
+
+@app.route('/api/top_book_data', methods=['GET'])
+def get_top_book_data():
+    return jsonify(data=topBookdata)
 
 if __name__ == '__main__':
     app.run(debug=True)

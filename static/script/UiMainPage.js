@@ -1,3 +1,96 @@
+function createTopBooks(bookData) {
+  const container = document.createElement('div');
+  container.style.display = 'flex';
+  container.style.flexDirection = 'column'; 
+
+  const h1 = document.createElement('h1');
+  h1.textContent = "Popular books";
+  h1.style.textAlign = 'center';
+  h1.style.marginBottom = '30px';
+  h1.style.fontSize = '45px';
+
+  container.appendChild(h1);
+
+  const topBooksContainer = document.createElement('div');
+  topBooksContainer.className = 'top_books';
+
+  const frame = document.createElement('div');
+  frame.style.border = '2px solid #ccc';
+  frame.style.borderRadius = '10px';
+  frame.style.padding = '20px';
+  frame.style.maxWidth = '2400px';
+  frame.style.margin = '0 auto';
+  frame.style.width = '1500px';
+  frame.style.boxShadow = '0 0 5px #089da1';
+
+  const topBookBox = document.createElement('div');
+  topBookBox.className = 'top_book_box';
+  topBookBox.style.display = 'flex';
+  topBookBox.style.justifyContent = 'center';
+  topBookBox.style.width = '100%';
+  topBookBox.style.padding = '0 20px';
+  topBookBox.style.display = 'grid';
+  topBookBox.style.overflow = 'hidden';
+
+  bookData.forEach((bookInfo) => {
+    const bookCard = document.createElement("div");
+    bookCard.className = "book-card";
+    bookCard.style.width = '800px';
+    bookCard.style.borderRadius = '10px';
+  
+    const bookTag = document.createElement('div');
+    bookTag.className = 'top_book_tag';
+    bookTag.style.display = 'flex';
+    bookTag.style.justifyContent = 'space-between';
+    bookTag.style.margin = '10px 0';
+  
+    const bookInfoContainer = document.createElement('div');
+    bookInfoContainer.className = 'book-info-container';
+    bookInfoContainer.style.display = 'flex';
+    bookInfoContainer.style.justifyContent = 'space-between';
+    bookInfoContainer.style.width = '100%';
+  
+    const bookTitle = document.createElement("div");
+    bookTitle.className = "book-title";
+    bookTitle.textContent = bookInfo.nameBook;
+  
+    const bookCategory = document.createElement("div");
+    bookCategory.className = "book-category";
+    bookCategory.textContent = `Category: ${bookInfo.category}`;
+  
+    const bookLikes = document.createElement("div");
+    bookLikes.className = "book-likes";
+    bookLikes.textContent = `Likes: ${bookInfo.totalLikes}`;
+  
+    bookInfoContainer.appendChild(bookTitle);
+    bookInfoContainer.appendChild(bookCategory);
+    bookInfoContainer.appendChild(bookLikes);
+  
+    bookTag.appendChild(bookInfoContainer);
+  
+    bookCard.appendChild(bookTag);
+  
+    topBookBox.appendChild(bookCard);
+  });
+
+  topBooksContainer.appendChild(topBookBox);
+  frame.appendChild(topBooksContainer);
+  container.appendChild(frame);
+
+  return container;
+}
+
+fetch('/api/top_book_data')
+  .then(response => response.json())
+  .then(data => {
+    const topBook = createTopBooks(data.data);
+    document.body.appendChild(topBook);
+  })
+  .catch(error => {
+    console.error('เกิดข้อผิดพลาดในการดึงข้อมูล:', error);
+  });
+  
+
 
 function createFeaturedBooks(bookData, categories) {
     const featuredBooksContainer = document.createElement('div');
@@ -30,7 +123,7 @@ function createFeaturedBooks(bookData, categories) {
       const featuredBookCard = document.createElement('div');
       featuredBookCard.className = 'featured_book_card';
       featuredBookCard.style.width = '250px';
-      featuredBookCard.style.height = '420px';
+      featuredBookCard.style.height = '390px';
       featuredBookCard.style.textAlign = 'center';
       featuredBookCard.style.padding = '5px';
       featuredBookCard.style.border = '1px solid #919191';

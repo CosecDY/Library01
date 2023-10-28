@@ -24,7 +24,6 @@ class Book:
             'totalLikes': self.totalLikes
         }
 
-    
 class TreeNode:
     def __init__(self, data):
         self.data = data
@@ -159,7 +158,7 @@ class Library:
                             "totalLikes": totalLikes,
                             "category": category,
                             "imgSrc": imgSrc,
-                            "learnMoreLink":bookId
+                            "learnMoreLink": bookId
                         }
 
                         book_data_list.append(book_info)
