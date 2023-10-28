@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Store Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/SearchResults.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="static/image/logo.png">
+        </div>
+        <form action="/search" method="post">
+            <input class="inputSearch" type="text" name="search_text" placeholder="ค้นหา...">
+            <button class="search" type="submit">ค้นหา</button>
+            
+        </form>
+        <div class="social_icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-heart"></i>
+        </div>
+    </nav>
+    <h1 style="text-align: center;">ผลลัพธ์การค้นหา</h1>
+    {% for books in data %}
+    <div class="row" style="padding-left: 140px;">
+        {% for book in books %}
+        <div class="col-md-2" style="margin-right: 1%; margin-top: 2%;">
+            <div class="card" style="width: 14rem; border: 1px solid #ccc; box-shadow: 2px 2px 5px #888;">
+
+                <img src="{{book['imgSrc']}}" class="card-img-top" alt="{{book['nameBook']}}" style="padding: 20px;">
+
+                <div class="card-body" style="padding-top: 0;">
+                    <p class="card-nameBook" style="margin-bottom: 0;">{{book['nameBook']}}</p>
+                    <p class="card-price" style="margin-bottom: 0;">Price: {{book['price']}} ฿</p>
+                    <p class="card-categories">Category: {{book['category']}}</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endfor %}
+
+
+</body>
+
+</html>
