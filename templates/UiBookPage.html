@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Info Website</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/UiBookPage.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <style>
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 50%;
+            padding: 10px;
+        }
+        .center {
+            display: block;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <!--<script  src="{{ url_for('static', filename='/script/UiBookPage.js') }}"></script>-->
+    <div class="row">
+        <div class="column">
+            <img src="static/image/about.png" alt="" width="70px" height="120px" class="center">
+        </div>
+        <div class="column">
+            <h2>หนังสือหัวควย</h2>
+            <h3>คนเขียนกากๆ : </h3>
+            <h5>ไอพวกโง่ที่กดlike : </h5>
+            <h3>ราคาแพงๆ : </h3>
+            <button type="button">ปุ่มโง่ๆ</button>
+        </div>
+    </div>
+</body>
+</html>
