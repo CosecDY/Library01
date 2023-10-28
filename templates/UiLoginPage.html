@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/UiLoginPage.css') }}">
+    <title>HASH TECHIE OFFICIAL</title>
+</head>
+
+<body>
+
+    <div class="yourbox"> <!-- เทาหน้าต่างฝ่ากของ -->
+        <p><a href="/yourbox" target="_blank" rel="noopener noreferrer">press to yourbox</a></p>
+    </div>
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+
+                <form action="">
+                    <h2>Login</h2>
+
+                    <div class="login_button">
+
+                        <form action="/check_user_pass" method="POST">
+                            <div class="inputbox">
+                                <ion-icon name="person-outline"></ion-icon>
+                                <input type="username" required name="username_login" value="{{username_login}}">
+                                <label for="">Username</label>
+
+                            </div>
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input type="password" required name="password_login" value="{{password_login}}">
+                                <label for="">Password</label>
+                            </div>
+                            <button type="submit">Log in</button>
+                        </form>
+                    </div>
+
+                    <div class="forget_password">
+                        <!-- <label for=""><input type="checkbox">Remember Me  <a href="E:\HTMLCSS\my project\reset password\index.html" target="_blank" rel="noopener noreferrer">Forget Password</a></label> -->
+                        <p>If you <a href="/forget_password" rel="noopener noreferrer">Forget
+                                Password</a></p>
+                    </div>
+
+
+
+
+
+
+                    <div class="register">
+
+                        <!-- <p>Don't have a account <a href="E:\HTMLCSS\my project\register\index.html" target="_blank" rel="noopener noreferrer">Register</a></p> -->
+                        <p>Don't have a account? <a href="/register" target="_blank"
+                                rel="noopener noreferrer">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
