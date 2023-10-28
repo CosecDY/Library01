@@ -18,10 +18,11 @@
             <div class="logo">
                 <img src="static/image/logo.png">
             </div>
-            <div class="search-container">
-                <input type="text" id="search" placeholder="ค้นหา...">
-                <button onclick="searchFunction()">ค้นหา</button>
-            </div>
+            <form action="/search" method="post">
+                <input type="text" name="search_text" placeholder="ค้นหา...">
+                <button type="submit">ค้นหา</button>
+                
+            </form>
             <div class="social_icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <i class="fa-solid fa-heart"></i>
