@@ -161,7 +161,7 @@ function createFeaturedBooks(bookData, categories) {
   
       const bookPrice = document.createElement('p');
       bookPrice.className = 'book_price';
-      bookPrice.innerHTML = `${bookInfo.price} $<sub><del>`;
+      bookPrice.innerHTML = `${bookInfo.price} ฿<sub><del>`;
   
       const learnMoreLink = document.createElement('a');
       learnMoreLink.className = 'f_btn';

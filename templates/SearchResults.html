@@ -19,19 +19,28 @@
 
 <body>
     <!-- ส่วนเนื้อหา -->
-    <h1>ผลลัพธ์การค้นหา</h1>
-    {% for book in data %}
-    <div class="card" style="width: 18rem;">
-        <img src="{{book['imgSrc']}}" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">{{book['nameBook']}}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+    <h1 style="text-align: center;">ผลลัพธ์การค้นหา</h1>
+    {% for books in data %}
+    <div class="row" style="padding-left: 140px;">
+        {% for book in books %}
+        <div class="col-md-2" style="margin-right: 1%; margin-top: 2%;">
+            <div class="card" style="width: 14rem; border: 1px solid #ccc; box-shadow: 2px 2px 5px #888;">
+
+                <img src="{{book['imgSrc']}}" class="card-img-top" alt="{{book['nameBook']}}" style="padding: 20px;">
+
+                <div class="card-body" style="padding-top: 0;">
+                    <p class="card-nameBook" style="margin-bottom: 0;">{{book['nameBook']}}</p>
+                    <p class="card-price" style="margin-bottom: 0;">Price: {{book['price']}} ฿</p>
+                    <p class="card-categories">Category: {{book['category']}}</p>
+                    <a href="#" class="btn btn-primary">Learn More</a>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
     {% endfor %}
-    
+
+
 </body>
 
 </html>

@@ -62,14 +62,13 @@ def search_books():
     search_text = request.form.get('search_text')
     matched_books = []
 
-    # Search within each category
     for category_data in book_data:
         for book in category_data:
             if search_text.lower() in book['nameBook'].lower():
                 matched_books.append(book)
 
-    # return matched_books
-    return render_template('SearchResults.html', data=matched_books)
+    group_items=[matched_books[i:i+5] for i in range(0,len(matched_books),5)]
+    return render_template('SearchResults.html', data=group_items)
     # return jsonify(data=matched_books)
  
 
