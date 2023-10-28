@@ -18,7 +18,20 @@
 </head>
 
 <body>
-    <!-- ส่วนเนื้อหา -->
+    <nav>
+        <div class="logo">
+            <img src="static/image/logo.png">
+        </div>
+        <form action="/search" method="post">
+            <input class="inputSearch" type="text" name="search_text" placeholder="ค้นหา...">
+            <button class="search" type="submit">ค้นหา</button>
+            
+        </form>
+        <div class="social_icon">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <i class="fa-solid fa-heart"></i>
+        </div>
+    </nav>
     <h1 style="text-align: center;">ผลลัพธ์การค้นหา</h1>
     {% for books in data %}
     <div class="row" style="padding-left: 140px;">
