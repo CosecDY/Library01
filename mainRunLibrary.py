@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, redirect, render_template, request
+from flask import Flask, jsonify, redirect, render_template, request,url_for
 from Library import *
 
 app = Flask(__name__)
@@ -85,18 +85,25 @@ def search_books():
 
 receiveData = []
 
-@app.route('/receive_data', methods=['POST'])
-def receive_data():
-    data = request.get_json() 
-    global receiveData
-    receiveData = data.get('bookData')
-    return jsonify({'message': 'ข้อมูลได้รับแล้ว'})
+@app.route('/receive_data/<book>', methods=['GET'])
+def receive_data(book):
+    bookId = int(book)
+    if libraryComic.search(bookId):
+        return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
+    elif libraryFiction.search(bookId):
+        return render_template('UiBookPage.html',book = libraryFiction.search(bookId).data.to_json())
+    elif libraryHorror.search(bookId):
+        return render_template('UiBookPage.html',book = libraryHorror.search(bookId).data.to_json())
+    elif libraryLearning.search(bookId):
+        return render_template('UiBookPage.html',book = libraryLearning.search(bookId).data.to_json())
+    elif libraryRomance.search(bookId):
+       return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
+    else:
+        return "not found"
+ 
 
 
-@app.route('/ui_book_page')
-def ui_book_page():
-    bookData =  receiveData
-    return render_template('UiBookPage.html', bookData=bookData)
+
 
 
 

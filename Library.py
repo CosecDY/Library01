@@ -3,7 +3,7 @@ import os
 class Book:
     nextBookId = 0  
 
-    def __init__(self, nameBook, availableQuantity, author, category, price, totalLikes):
+    def __init__(self, nameBook, availableQuantity, author, category, price, totalLikes, imgSrc):
         self.bookId = Book.nextBookId  
         Book.nextBookId += 1  
         self.nameBook = nameBook
@@ -12,6 +12,7 @@ class Book:
         self.category = category
         self.price = price
         self.totalLikes = totalLikes
+        self.imgSrc = imgSrc
 
     def to_json(self):
         return {
@@ -21,7 +22,8 @@ class Book:
             'availableQuantity': self.availableQuantity,
             'categories': self.category,
             'price': self.price,
-            'totalLikes': self.totalLikes
+            'totalLikes': self.totalLikes,
+            'imgSrc' : self.imgSrc
         }
 
 class TreeNode:
@@ -33,69 +35,100 @@ class TreeNode:
 class Library:
     def __init__(self):
         self.root = None
-    
-    def contains(self, book):
-        return self._contains(self.root, book)
 
-    def _contains(self, node, book):
+    def insert(self, book):
+        self.root = self._insert_recursive(self.root, book)
+
+    def _insert_recursive(self, node, book):
         if node is None:
-            return False
-        if node.data == book:
-            return True
+            return TreeNode(book)
         if book.bookId < node.data.bookId:
-            return self._contains(node.left, book)
-        return self._contains(node.right, book)
-
-    def insert(self, newNode, category):
-        self.root = self._insert(self.root, newNode, category)
-
-    def _insert(self, node, newNode, category):
-        if node is None:
-            return newNode
-        if newNode.data.bookId == node.data.bookId:
-            node.data.author = newNode.data.author
-            node.data.category = newNode.data.category
-            node.data.available = newNode.data.available
-        elif newNode.data.bookId < node.data.bookId:
-            node.left = self._insert(node.left, newNode, category)
+            node.left = self._insert_recursive(node.left, book)
         else:
-            node.right = self._insert(node.right, newNode, category)
+            node.right = self._insert_recursive(node.right, book)
         return node
 
-    def search(self, bookId):
-        return self._search(self.root, bookId)
+    def search(self, book_id):
+        return self._search_recursive(self.root, book_id)
 
-    def _search(self, node, bookId):
-        if node is None:
-            return None
-        if node.data.bookId == bookId:
-            return node.data
-        if bookId < node.data.bookId:
-            return self._search(node.left, bookId)
-        return self._search(node.right, bookId)
+    def _search_recursive(self, node, book_id):
+        if node is None or node.data.bookId == book_id:
+            return node
+        if book_id < node.data.bookId:
+            return self._search_recursive(node.left, book_id)
+        return self._search_recursive(node.right, book_id)
 
-    def delete(self, bookId, category):
-        self.root = self._delete(self.root, bookId, category)
+    def delete(self, book_id):
+        self.root = self._delete_recursive(self.root, book_id)
 
-    def _delete(self, node, bookId, category):
+    def _delete_recursive(self, node, book_id):
         if node is None:
             return node
-
-        if bookId < node.data.bookId:
-            node.left = self._delete(node.left, bookId, category)
-        elif bookId > node.data.bookId:
-            node.right = self._delete(node.right, bookId, category)
+        if book_id < node.data.bookId:
+            node.left = self._delete_recursive(node.left, book_id)
+        elif book_id > node.data.bookId:
+            node.right = self._delete_recursive(node.right, book_id)
         else:
             if node.left is None:
                 return node.right
             elif node.right is None:
                 return node.left
-            node.data = self._minValueNode(node.right)
-            node.right = self._delete(node.right, node.data.bookId, category)
-
+            min_node = self._find_min(node.right)
+            node.data = min_node.data
+            node.right = self._delete_recursive(node.right, min_node.data.bookId)
         return node
 
-    # def _minValueNode(self, node):
+    def _find_min(self, node):
+        while node.left is not None:
+            node = node.left
+        return node
+
+    def _inOrderTraversal(self, node, category, outputFile):
+        if node is not None:
+            self._inOrderTraversal(node.left, category, outputFile)
+            if node.data.category == category:
+                outputFile.write(
+                    f"{node.data.bookId},{node.data.nameBook},{node.data.availableQuantity},{node.data.author},{node.data.price},{node.data.totalLikes}\n"
+                )
+            self._inOrderTraversal(node.right, category, outputFile)
+
+    def save_to_file(self, category):
+        current_directory = os.getcwd()
+        try:
+            file_path = os.path.join(current_directory, "ListBooks", category + ".txt")
+            with open(file_path, "w") as outputFile:
+                self._inOrderTraversal(self.root, category, outputFile)
+        except IOError as e:
+            print(f"Unable to open the file: {e}")
+
+    def load_from_file(self, category, book_data_list):
+        current_directory = os.getcwd()
+        try:
+            file_path = os.path.join(current_directory, "ListBooks", category + ".txt")
+            with open(file_path, "r", encoding="utf-8") as inputFile:
+                for line in inputFile:
+                    data = line.strip().split(",")
+                    if len(data) >= 6:
+                        bookId = int(data[0])
+                        nameBook = data[1]
+                        available = int(data[2])
+                        author = data[3]
+                        price = float(data[4])
+                        totalLikes = int(data[5])
+                        imgSrc = f"static/image/book_{bookId}.jpg"
+
+                        book_info = Book(nameBook, available, author, category, price, totalLikes, imgSrc)
+                        book_info.bookId = bookId  
+                    
+                        self.insert(book_info)
+                        book_data_list.append(book_info.to_json())
+        except FileNotFoundError as e:
+            print(f"Unable to open the file: {e}")
+
+
+
+
+     # def _minValueNode(self, node):
     #     while node.left is not None:
     #         node = node.left
     #     return node.data
@@ -116,55 +149,6 @@ class Library:
     #         return True
     #     return False
     
-    def _inOrderTraversal(self, node, category, outputFile):
-        if node is not None:
-            self._inOrderTraversal(node.left, category, outputFile)
-            if node.data.category == category:
-                outputFile.write(
-                    f"{node.data.bookId},{node.data.nameBook},{node.data.availableQuantity},{node.data.author},{node.data.price},{node.data.totalLikes}\n"
-                )
-            self._inOrderTraversal(node.right, category, outputFile)
-
-    def save_to_file(self, category):
-        current_directory = os.getcwd()
-        try:
-            file_path = os.path.join(current_directory, "ListBooks", category + ".txt")
-            with open(file_path, "w") as outputFile:
-                self._inOrderTraversal(self.root, category, outputFile)
-        except IOError:
-            print("Unable to open the file.")
-
-    def load_from_file(self, category, book_data_list):
-        current_directory = os.getcwd()
-        try:
-            file_path = os.path.join(current_directory, "ListBooks", category + ".txt")
-            with open(file_path, "r" , encoding="utf-8") as inputFile:
-                for line in inputFile:
-                    data = line.strip().split(",")
-                    if len(data) >= 6:
-                        bookId = int(data[0])
-                        nameBook = data[1]
-                        available = int(data[2])
-                        author = data[3]
-                        price = float(data[4])
-                        totalLikes = int(data[5])
-                        imgSrc = f"static/image/book_{bookId}.jpg"
-                    
-                        book_info = {
-                            "nameBook": nameBook,
-                            "availableQuantity": available,
-                            "author": author,
-                            "price": price,
-                            "totalLikes": totalLikes,
-                            "category": category,
-                            "imgSrc": imgSrc,
-                            "learnMoreLink": bookId
-                        }
-
-                        book_data_list.append(book_info)
-        except FileNotFoundError:
-            print("Unable to open the file.")
-
     # def getbookIdsInCategory(self, category):
     #     bookIds = []
     #     self._getbookIdsInCategory(self.root, category, bookIds)

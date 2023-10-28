@@ -1,4 +1,4 @@
-1,ฺBoruto,115,Masashi Kishimoto,99,100000
+1,Boruto,115,Masashi Kishimoto,99,100000
 2,Onepiece,40,Eiichiro Oda,99,1000
 3,Conan,90,Aoyama Yoshimasa,99,100
 4,Doraemon,169,Fujiko Fujio,99,100

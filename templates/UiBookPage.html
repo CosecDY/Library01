@@ -30,14 +30,13 @@
     
     <div class="row">
         <div class="column">
-            <img src="" alt="" width="165px" height="240px" class="center" id="bookImage">
+            <img src="/{{book['imgSrc']}}" alt="{{book['nameBook']}}" width="165px" height="240px" class="center">
         </div>
         <div class="column">
-            <h2 id="bookName"></h2>
-            <h3 id="bookAuthor">Author: </h3>
-            <h5 id="bookLikes">Likes: </h5>
-            <h3 id="bookPrice">Price: </h3>
-            <button type="button">ปุ่มโง่ๆ</button>
+            <h2>{{book['nameBook']}}</h2>
+            <h3>Author : {{book['imgSrc']}}</h3>
+            <h5>Likes : {{book['totalLikes']}}</h5>
+            <h3>Price : {{book['price']}}</h3>
         </div>
     </div>
     

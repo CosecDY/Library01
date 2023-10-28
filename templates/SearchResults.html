@@ -25,7 +25,7 @@
         <form action="/search" method="post">
             <input class="inputSearch" type="text" name="search_text" placeholder="ค้นหา...">
             <button class="search" type="submit">ค้นหา</button>
-            
+
         </form>
         <div class="social_icon">
             <i class="fa-solid fa-magnifying-glass"></i>
@@ -36,6 +36,7 @@
     {% for books in data %}
     <div class="row" style="padding-left: 140px;">
         {% for book in books %}
+
         <div class="col-md-2" style="margin-right: 1%; margin-top: 2%;">
             <div class="card" style="width: 14rem; border: 1px solid #ccc; box-shadow: 2px 2px 5px #888;">
 
@@ -45,10 +46,14 @@
                     <p class="card-nameBook" style="margin-bottom: 0;">{{book['nameBook']}}</p>
                     <p class="card-price" style="margin-bottom: 0;">Price: {{book['price']}} ฿</p>
                     <p class="card-categories">Category: {{book['category']}}</p>
-                    <a href="#" class="btn btn-primary">Learn More</a>
+                    <!-- <form action='{{url_for("receive_data",book=book)}}' method="POST"> -->
+                        <a href="{{ url_for('receive_data', book=book['bookId']) }}" class="btn btn-primary">Learn More</a>
+
+                    <!-- </form> -->
                 </div>
             </div>
         </div>
+
         {% endfor %}
     </div>
     {% endfor %}
