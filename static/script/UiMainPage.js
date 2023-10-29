@@ -94,29 +94,6 @@ fetch('/api/top_book_data')
   });
   
 
-/*
-function sendDataToFlask(data, url, successCallback, errorCallback) {
-  const xhr = new XMLHttpRequest();
-  xhr.open("POST", url, true);
-  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
-    
-  xhr.onload = function() {
-      if (xhr.status === 200) {
-          const responseData = JSON.parse(xhr.responseText);
-          successCallback(responseData);
-      } else {
-           errorCallback("เกิดข้อผิดพลาดในการส่งข้อมูล");
-      }
-  };
-
-  xhr.onerror = function() {
-      errorCallback("เกิดข้อผิดพลาดในการส่งข้อมูล");
-  };
-
-  xhr.send(JSON.stringify(data));
-}
-*/
-
 function createFeaturedBooks(bookData, categories) {
     const featuredBooksContainer = document.createElement('div');
     featuredBooksContainer.className = 'featured_boks';
@@ -139,7 +116,7 @@ function createFeaturedBooks(bookData, categories) {
     featuredBookBox.className = 'featured_book_box';
     featuredBookBox.style.display = 'flex';
     featuredBookBox.style.width = '100%';
-    featuredBookBox.style.height = '500px';
+    featuredBookBox.style.height = '420px';
     featuredBookBox.style.padding = '0 20px';
     featuredBookBox.style.display = 'grid';
     featuredBookBox.style.overflow = 'hidden';
@@ -197,30 +174,6 @@ function createFeaturedBooks(bookData, categories) {
       learnMoreBtn.textContent = 'Learn More';
       learnMoreBtn.id = 'myButtonId';
       learnMoreBtn.href='/send_data?param1='+bookInfo.bookId;
-
-      /*
-      const learnMoreLink = document.createElement('a');
-      learnMoreLink.className = 'f_btn';
-      learnMoreLink.textContent = 'Learn More';
-      //learnMoreLink.href = "{{ url_for('receive_data', book=bookData.bookId) }}";
-      
-      // ใช้ตัวแปร JavaScript ที่ถูกสร้างใน Flask เพื่อสร้าง URL
-      
-      const bookId = "{{ book['bookId'] }}";
-      //const url = `/receive_data/${bookId}`;
-      
-      learnMoreLink.href = `/receive_data/${bookId}`;
-      
-      learnMoreLink.addEventListener('click', function(event) {
-          event.preventDefault();
-          sendDataToFlask(bookInfo, url, function(responseData) {
-              window.location.href = url;
-          }, function(error) {
-              console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
-          });
-      });
-      */
-      
      
       const totalLikesElement = document.createElement('div');
       totalLikesElement.className = 'total_likes';
