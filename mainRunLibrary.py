@@ -7,14 +7,6 @@ import os
 
 app = Flask(__name__)
 
-
-@app.route('/')
-def first_page():
-    save_user = ["user","pass" ]
-    with open('static/UsernamePassword.txt', 'wb') as f:
-        pickle.dump(save_user, f)
-    return render_template('UiLoginPage.html')
-
 libraryComic = Library()
 libraryFiction = Library()
 libraryHorror = Library()
