@@ -2,10 +2,9 @@ import os
 
 class Book:
     nextBookId = 0  
-
-    def __init__(self, nameBook, availableQuantity, author, category, price, totalLikes, imgSrc):
-        self.bookId = Book.nextBookId  
-        Book.nextBookId += 1  
+    
+    def __init__(self,book_id, nameBook, availableQuantity, author, category, price, totalLikes, imgSrc):
+        self.bookId = book_id 
         self.nameBook = nameBook
         self.author = author
         self.availableQuantity = availableQuantity
@@ -117,7 +116,7 @@ class Library:
                         totalLikes = int(data[5])
                         imgSrc = f"static/image/book_{bookId}.jpg"
 
-                        book_info = Book(nameBook, available, author, category, price, totalLikes, imgSrc)
+                        book_info = Book(bookId,nameBook, available, author, category, price, totalLikes, imgSrc)
                         book_info.bookId = bookId  
                     
                         self.insert(book_info)

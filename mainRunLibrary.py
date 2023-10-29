@@ -156,7 +156,7 @@ def add_book_data():
     addPriceBook = request.form.get('price')
     addCategoryBook = request.form.get('category')
     imgSrc = f"static/image/book_{book_id}.jpg"
-    book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addPriceBook,0,imgSrc)
+    book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addCategoryBook,addPriceBook,0,imgSrc)
     if addCategoryBook == "Comic":
         libraryComic.insert(book)
         libraryComic.save_to_file("Comic")
