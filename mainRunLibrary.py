@@ -100,7 +100,9 @@ def receive_data(book):
        return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
     else:
         return "not found"
- 
+
+
+
 
 
 
