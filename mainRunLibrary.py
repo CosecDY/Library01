@@ -1,14 +1,22 @@
 import random
-from flask import Flask, jsonify, redirect, render_template, request, session,url_for, flash
+from flask import Flask, jsonify, redirect, render_template, request,url_for,flash
 from Library import *
+import secrets
 import string
 import os
+import json
+
 
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(24)
 
 @app.route('/')
 def first_page():
     return render_template('UiLoginPage.html')
+
+@app.route('/register')
+def UiRegister():
+    return render_template('UiRegisterPage.html')
 
 libraryComic = Library()
 libraryFiction = Library()
@@ -62,6 +70,7 @@ def save_user_data(users):
         for user in users:
             line = f"username: {user['username']}, password: {user['password']}\n"
             outputFile.write(line)
+        
 
 
 def generate_random_password(length=12):
@@ -71,20 +80,22 @@ def generate_random_password(length=12):
 # Routes
 @app.route('/register_page', methods=['GET', 'POST'])
 def register():
+      
+    
     if request.method == 'POST':
+        
         username = request.form.get('username')
         password = request.form.get('password')
-        confirm_password = request.form.get('confirm_password')
-
+        confirm_password = request.form.get('Confirm_password')
         if password == confirm_password:
             users = load_user_data()
             users.append({'username': username, 'password': password})
             save_user_data(users)
 
-            flash('Registration successful!', 'success')
+            flash('Registration successful!')
             return redirect(url_for('login'))
         else:
-            flash('Passwords do not match', 'error')
+            return render_template('UiRegisterPage.html')
 
     return render_template('UiRegisterPage.html')
 
@@ -96,22 +107,15 @@ def login():
         users = load_user_data()
     
         user = next((u for u in users if u['username'] == username and u['password'] == password), None)
-
-        if user:
-            return redirect(url_for('dashboard'))
+        
+        if user is not None:
+            return render_template('UiMainPage.html', username=username)
+        
         else:
-            flash('Invalid username or password', 'error')
+            return render_template('UiLoginPage.html')
 
     return render_template('UiLoginPage.html')
 
-@app.route('/dashboard')
-def dashboard():
-    if 'username' in session:
-        username = session['username']
-        return render_template('UiMainPage.html', username=username)
-    else:
-        flash('You need to log in first.', 'error')
-        return redirect(url_for('login'))
 
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
@@ -133,15 +137,15 @@ def forgot_password():
 
     return render_template('UiForgotPasswordPage.html')
 
-@app.route('/logout')
-def logout():
-    # ตรวจสอบว่าผู้ใช้ลงชื่อออกหรือยังตามความต้องการของคุณ
-    # ตัวอย่าง: ตรวจสอบสถานะการลงชื่อออกจากแอปพลิเคชัน
-    if 'username' in session:
-        # ทำการลงชื่อออกจากแอปพลิเคชันตามความต้องการของคุณ
-        # ตัวอย่าง: เคลียร์คุณสมบัติที่แสดงสถานะการลงชื่อเข้าใช้ของผู้ใช้ในแอปพลิเคชัน
-        flash('Logged out successfully', 'success')
-    return redirect(url_for('login'))
+# @app.route('/logout')
+# def logout():
+#     # ตรวจสอบว่าผู้ใช้ลงชื่อออกหรือยังตามความต้องการของคุณ
+#     # ตัวอย่าง: ตรวจสอบสถานะการลงชื่อออกจากแอปพลิเคชัน
+#     if 'username' in session:
+#         # ทำการลงชื่อออกจากแอปพลิเคชันตามความต้องการของคุณ
+#         # ตัวอย่าง: เคลียร์คุณสมบัติที่แสดงสถานะการลงชื่อเข้าใช้ของผู้ใช้ในแอปพลิเคชัน
+#         flash('Logged out successfully', 'success')
+#     return redirect(url_for('login'))
 
 
 
