@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('UiMainPage.html')
+    return render_template('UiLoginPage.html')
 
 @app.route('/login')
 def login():
@@ -13,7 +13,7 @@ def login():
 
 @app.route('/forget_password')
 def forgot():
-    return render_template('UiForgotPassword.html')
+    return render_template('UiForgotPasswordPage.html')
 
 @app.route('/register')
 def register():
