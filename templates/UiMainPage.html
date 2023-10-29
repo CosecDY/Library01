@@ -73,7 +73,7 @@
             -->
         </nav>
         
-    <form action="/add_book" method="post">
+    <form action="/add_book" method="post" enctype="multipart/form-data">
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
@@ -82,6 +82,10 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="formFile" class="form-label">FileImage(.jpg)</label>
+                    <input class="form-control" type="file" name="formFile">
+                  </div>
                   <div class="mb-3">
                     <label for="name-book" class="col-form-label">Book Name:</label>
                     <input type="text" class="form-control" name="name-book" >
@@ -119,9 +123,6 @@
                 <p>
                     --EDIT ME PLEASEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE--
                 </p>
-                <!--
-                <a href="/UiLoginPage.html" class="main_btn">Log in</a>
-                -->
             </div>
 
             <div class="main_img">

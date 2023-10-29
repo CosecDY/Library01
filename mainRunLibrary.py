@@ -4,6 +4,8 @@ from Library import *
 import secrets
 import string
 import os
+from PIL import Image
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(24)
@@ -138,14 +140,6 @@ def forgot_password():
 
 
 #######################################################################################
-
-def generate_unique_book_id(existing_ids):
-    while True:
-        book_id = random.randint(1, 1000)  # สร้างเลขสุ่มในช่วงที่คุณต้องการ
-        if book_id not in existing_ids:
-            return book_id
-
-
 @app.route('/add_book', methods=['post'])
 def add_book_data():
     book_id = random.randint(1, 1000000000)
@@ -155,7 +149,44 @@ def add_book_data():
     addAuthorBook =  request.form.get('author')
     addPriceBook = request.form.get('price')
     addCategoryBook = request.form.get('category')
-    imgSrc = f"static/image/book_{book_id}.jpg"
+    
+    image = request.files['formFile']
+    imgSrc = f"/static/image/book_{book_id}.jpg"  
+
+   
+    if 'formFile' not in request.files:
+        return 'No file part'
+
+    image = request.files['formFile']
+
+    if image.filename == '':
+        return 'No selected file'
+
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
+
+    if '.' in image.filename and image.filename.rsplit('.', 1)[1].lower() in allowed_extensions:
+        upload_folder = 'static/image'
+        os.makedirs(upload_folder, exist_ok=True)
+
+        imgSrcFile = f"book_{book_id}.jpg"  
+
+        image.save(os.path.join(upload_folder, imgSrcFile))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addCategoryBook,addPriceBook,0,imgSrc)
     if addCategoryBook == "Comic":
         libraryComic.insert(book)
