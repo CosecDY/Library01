@@ -59,6 +59,25 @@ section nav .social_icon i:hover{
     cursor: pointer;
 }
 
+.right_button{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.main_button{
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.left_button{
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+
+
 section .main{
     display: flex;
     align-items: center;
@@ -95,6 +114,10 @@ section .main .main_tag .main_btn{
     left: 25px;
     color: #fff;
     text-decoration: none;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 section .main .main_img img{
@@ -219,8 +242,9 @@ button {
     color: white;
     border: none;
     cursor: pointer;
+    /*
     border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-right-radius: 10px;*/
 }
 
 
