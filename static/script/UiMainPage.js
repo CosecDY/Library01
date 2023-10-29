@@ -58,7 +58,7 @@ function createTopBooks(bookData) {
   
     const bookCategory = document.createElement("div");
     bookCategory.className = "book-category";
-    bookCategory.textContent = `Category: ${bookInfo.category}`;
+    bookCategory.textContent = `Category: ${bookInfo.categories}`;
     bookCategory.style.margin = '0 auto';
   
     const bookLikes = document.createElement("div");
@@ -94,15 +94,7 @@ fetch('/api/top_book_data')
   });
   
 
-
-
-
-
-
-
-
-
-
+/*
 function sendDataToFlask(data, url, successCallback, errorCallback) {
   const xhr = new XMLHttpRequest();
   xhr.open("POST", url, true);
@@ -123,8 +115,7 @@ function sendDataToFlask(data, url, successCallback, errorCallback) {
 
   xhr.send(JSON.stringify(data));
 }
-
-
+*/
 
 function createFeaturedBooks(bookData, categories) {
     const featuredBooksContainer = document.createElement('div');
@@ -198,16 +189,27 @@ function createFeaturedBooks(bookData, categories) {
       const bookPrice = document.createElement('p');
       bookPrice.className = 'book_price';
       bookPrice.innerHTML = `${bookInfo.price} ฿<sub><del>`;
-  
+
+      const learnMoreBtn = document.createElement('a');
+    
+      learnMoreBtn.className = 'f_btn';
+      //const url = `/receive_data/${bookId}`;
+      learnMoreBtn.textContent = 'Learn More';
+      learnMoreBtn.id = 'myButtonId';
+      learnMoreBtn.href='/send_data?param1='+bookInfo.bookId;
+
+      /*
       const learnMoreLink = document.createElement('a');
       learnMoreLink.className = 'f_btn';
+      learnMoreLink.textContent = 'Learn More';
+      //learnMoreLink.href = "{{ url_for('receive_data', book=bookData.bookId) }}";
       
       // ใช้ตัวแปร JavaScript ที่ถูกสร้างใน Flask เพื่อสร้าง URL
-      const bookId = "{{ book['bookId'] }}";
-      const url = `/receive_data/${bookId}`;
       
-      learnMoreLink.href = url;
-      learnMoreLink.textContent = 'Learn More';
+      const bookId = "{{ book['bookId'] }}";
+      //const url = `/receive_data/${bookId}`;
+      
+      learnMoreLink.href = `/receive_data/${bookId}`;
       
       learnMoreLink.addEventListener('click', function(event) {
           event.preventDefault();
@@ -217,7 +219,9 @@ function createFeaturedBooks(bookData, categories) {
               console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
           });
       });
-
+      */
+      
+     
       const totalLikesElement = document.createElement('div');
       totalLikesElement.className = 'total_likes';
       totalLikesElement.textContent = `Likes ${bookInfo.totalLikes}`;
@@ -229,8 +233,9 @@ function createFeaturedBooks(bookData, categories) {
       bookTag.appendChild(writer);
       bookTag.appendChild(categories);
       bookTag.appendChild(bookPrice);
-      bookTag.appendChild(learnMoreLink);
+      bookTag.appendChild(learnMoreBtn);
       bookTag.appendChild(totalLikesElement);
+      
   
       featuredBookCard.appendChild(bookImage);
       featuredBookCard.appendChild(bookTag);

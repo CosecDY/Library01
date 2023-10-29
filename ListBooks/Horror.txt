@@ -3,5 +3,5 @@
 17,MINDHUNTER,425,John E. Douglas and Mark Olshaker,99,100
 18,Peril at End House,220,อกาธา (อากาธา) คริสตี้,99,100
 19,RAGDOLL,395,แดเนียล โคล,99,100
-20,CARDS ON THE TABLE,240,อกาธา (อากาธา) คริสตี้,99,100
+20,CARDS ON THE TABLE,240,อกาธา (อากาธา) คริสตี้,99,10000
 21, MISERY,335,Stephen King,99,100

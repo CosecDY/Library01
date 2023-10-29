@@ -84,6 +84,23 @@ def search_books():
     return render_template('SearchResults.html', data=group_items)
 
 
+@app.route('/send_data')
+def send_data():
+    param1 = request.args.get('param1')
+    bookId = int(param1)
+    if libraryComic.search(bookId):
+        return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
+    elif libraryFiction.search(bookId):
+        return render_template('UiBookPage.html',book = libraryFiction.search(bookId).data.to_json())
+    elif libraryHorror.search(bookId):
+        return render_template('UiBookPage.html',book = libraryHorror.search(bookId).data.to_json())
+    elif libraryLearning.search(bookId):
+        return render_template('UiBookPage.html',book = libraryLearning.search(bookId).data.to_json())
+    elif libraryRomance.search(bookId):
+       return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
+    else:
+        return "not found"
+    return param1
 
 @app.route('/receive_data/<book>', methods=['GET'])
 def receive_data(book):
