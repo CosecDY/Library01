@@ -6,10 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book Store Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/UiMainPage.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
 </head>
 
 <body>
@@ -26,7 +29,8 @@
             <div class="social_icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <i class="fa-solid fa-heart"></i>
-                <button color="black" class="left_button" type="button">Add book</button>
+                <button color="black" type="button" class="left_button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    data-bs-whatever="@mdo" >Add book</button>
                 <button class="middle_button" type="button">Delete book</button>
 
                 <button type="button">
@@ -34,6 +38,31 @@
                         Log out
                     </a>
                 </button>
+
+
+
+
+                
+    
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
             </div>
             <!--
@@ -43,6 +72,46 @@
             </div>
             -->
         </nav>
+        
+    <form action="/add_book" method="post">
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel">Book Details</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <div class="mb-3">
+                    <label for="name-book" class="col-form-label">Book Name:</label>
+                    <input type="text" class="form-control" name="name-book" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="available" class="col-form-label">Available:</label>
+                    <input type="text" class="form-control" name="available" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="author" class="col-form-label">Author:</label>
+                    <input type="text" class="form-control" name="author" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="price" class="col-form-label">Price:</label>
+                    <input type="text" class="form-control" name="price" >
+                  </div>
+                  <div class="mb-3">
+                    <label for="category" class="col-form-label">Category:</label>
+                    <input type="text" class="form-control" name="category" >
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Send message</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
 
         <div class="main">
             <div class="main_tag">

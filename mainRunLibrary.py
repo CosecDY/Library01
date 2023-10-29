@@ -4,8 +4,6 @@ from Library import *
 import secrets
 import string
 import os
-import json
-
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(24)
@@ -137,31 +135,49 @@ def forgot_password():
 
     return render_template('UiForgotPasswordPage.html')
 
-# @app.route('/logout')
-# def logout():
-#     # ตรวจสอบว่าผู้ใช้ลงชื่อออกหรือยังตามความต้องการของคุณ
-#     # ตัวอย่าง: ตรวจสอบสถานะการลงชื่อออกจากแอปพลิเคชัน
-#     if 'username' in session:
-#         # ทำการลงชื่อออกจากแอปพลิเคชันตามความต้องการของคุณ
-#         # ตัวอย่าง: เคลียร์คุณสมบัติที่แสดงสถานะการลงชื่อเข้าใช้ของผู้ใช้ในแอปพลิเคชัน
-#         flash('Logged out successfully', 'success')
-#     return redirect(url_for('login'))
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #######################################################################################
 
+def generate_unique_book_id(existing_ids):
+    while True:
+        book_id = random.randint(1, 1000)  # สร้างเลขสุ่มในช่วงที่คุณต้องการ
+        if book_id not in existing_ids:
+            return book_id
+
+
+@app.route('/add_book', methods=['post'])
+def add_book_data():
+    book_id = random.randint(1, 1000000000)
+    print(book_id)
+    addNameBook = request.form.get('name-book')
+    addAvailableBook = request.form.get('available')
+    addAuthorBook =  request.form.get('author')
+    addPriceBook = request.form.get('price')
+    addCategoryBook = request.form.get('category')
+    imgSrc = f"static/image/book_{book_id}.jpg"
+    book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addPriceBook,0,imgSrc)
+    if addCategoryBook == "Comic":
+        libraryComic.insert(book)
+        libraryComic.save_to_file("Comic")
+        return render_template('UiMainPage.html')
+    elif addCategoryBook == "Fiction":
+        libraryFiction.insert(book)
+        libraryFiction.save_to_file("Fiction")
+        return render_template('UiMainPage.html')
+    elif addCategoryBook == "Horror":
+        libraryHorror.insert(book)
+        libraryHorror.save_to_file("Horror")
+        return render_template('UiMainPage.html')
+    elif addCategoryBook == "Learning":
+        libraryLearning.insert(book)
+        libraryLearning.save_to_file("Learning")
+        return render_template('UiMainPage.html')
+    elif addCategoryBook == "Romance":
+        libraryRomance.insert(book)
+        libraryRomance.save_to_file("Romance")
+        return render_template('UiMainPage.html')
+    return render_template('UiMainPage.html')
 
 
 
