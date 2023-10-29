@@ -1,34 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
+    <title>Register</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/UiRegisterPage.css') }}">
-  <title>REGISTER</title>
 </head>
 <body>
     <section>
         <div class="form-box">
             <div class="form-value">
-                <form action="">
+                <form action="/register_page" method="POST">
                     <h2>sign up</h2>
                     <div class="inputbox">
-                        <!-- <ion-icon name="person-outline"></ion-icon> -->
                         <input type="username" required>
                         <label for="">Username</label>
                     </div>
                     <div class="inputbox">
-                        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
                         <input type="password" required>
                         <label for="">Password</label>
                     </div>
                     <div class="inputbox">
-                        <!-- <ion-icon name="lock-closed-outline"></ion-icon> -->
                         <input type="password" required>
                         <label for="">Confirm Password</label>
                     </div>
 
-                    <button>Sign up</button>
+                    <button type="submit">Sign up</button>
                     <div class="signin">
-                        <p>Alredy have an account? <a href="/login" target="_blank">Log in</a></p>
+                        <p>Alredy have an account? <a href="/login_page" >Log in</a></p>
 
                     </div>
                     
@@ -36,7 +33,5 @@
             </div>
         </div>
     </section>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
