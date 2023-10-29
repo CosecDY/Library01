@@ -100,7 +100,6 @@ def send_data():
        return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
     else:
         return "not found"
-    return param1
 
 @app.route('/receive_data/<book>', methods=['GET'])
 def receive_data(book):
