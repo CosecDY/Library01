@@ -103,28 +103,27 @@ fetch('/api/top_book_data')
 
 
 
-  function sendDataToFlask(data, url, successCallback, errorCallback) {
-    fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => {
-        if (response.ok) {
-            return response.json();
-        } else {
-            throw new Error('ไม่สามารถส่งข้อมูลไปยัง Flask');
-        }
-    })
-    .then(data => {
-        successCallback(data);
-    })
-    .catch(error => {
-        errorCallback(error);
-    });
+function sendDataToFlask(data, url, successCallback, errorCallback) {
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST", url, true);
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    
+  xhr.onload = function() {
+      if (xhr.status === 200) {
+          const responseData = JSON.parse(xhr.responseText);
+          successCallback(responseData);
+      } else {
+           errorCallback("เกิดข้อผิดพลาดในการส่งข้อมูล");
+      }
+  };
+
+  xhr.onerror = function() {
+      errorCallback("เกิดข้อผิดพลาดในการส่งข้อมูล");
+  };
+
+  xhr.send(JSON.stringify(data));
 }
+
 
 
 function createFeaturedBooks(bookData, categories) {
@@ -202,24 +201,22 @@ function createFeaturedBooks(bookData, categories) {
   
       const learnMoreLink = document.createElement('a');
       learnMoreLink.className = 'f_btn';
-      learnMoreLink.href = bookInfo.learnMoreLink;
+      
+      // ใช้ตัวแปร JavaScript ที่ถูกสร้างใน Flask เพื่อสร้าง URL
+      const bookId = "{{ book['bookId'] }}";
+      const url = `/receive_data/${bookId}`;
+      
+      learnMoreLink.href = url;
       learnMoreLink.textContent = 'Learn More';
+      
       learnMoreLink.addEventListener('click', function(event) {
-        event.preventDefault();
-        // ส่งคำร้องข้อมูลไปยัง Flask และรับข้อมูล
-        sendDataToFlask(bookInfo, '/receive_data', function(responseData) {
-            // กำหนดข้อมูลที่ได้รับจาก Flask ในหน้า UiBookPage.html
-            document.getElementById('bookImage').src = responseData.imgSrc;
-            document.getElementById('bookName').textContent = responseData.name;
-            document.getElementById('bookAuthor').textContent = 'Author: ' + responseData.author;
-            document.getElementById('bookLikes').textContent = 'Likes: ' + responseData.totalLikes;
-            document.getElementById('bookPrice').textContent = 'Price: ' + responseData.price;
-            // เปิดหน้า UiBookPage.html
-            window.location.href = '/path/to/UiBookPage.html';
-        }, function(error) {
-            console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
-        });
-    });
+          event.preventDefault();
+          sendDataToFlask(bookInfo, url, function(responseData) {
+              window.location.href = url;
+          }, function(error) {
+              console.error('เกิดข้อผิดพลาดในการส่งข้อมูล:', error);
+          });
+      });
 
       const totalLikesElement = document.createElement('div');
       totalLikesElement.className = 'total_likes';

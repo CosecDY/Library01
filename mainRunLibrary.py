@@ -83,7 +83,7 @@ def search_books():
     group_items=[matched_books[i:i+5] for i in range(0,len(matched_books),5)]
     return render_template('SearchResults.html', data=group_items)
 
-receiveData = []
+
 
 @app.route('/receive_data/<book>', methods=['GET'])
 def receive_data(book):
