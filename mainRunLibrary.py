@@ -1,11 +1,14 @@
 import random
 from flask import Flask, jsonify, redirect, render_template, request, session,url_for, flash
 from Library import *
-import pickle
 import string
 import os
 
 app = Flask(__name__)
+
+@app.route('/')
+def first_page():
+    return render_template('UiLoginPage.html')
 
 libraryComic = Library()
 libraryFiction = Library()
