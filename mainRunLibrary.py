@@ -148,6 +148,7 @@ def generate_unique_book_id(existing_ids):
 
 @app.route('/add_book', methods=['post'])
 def add_book_data():
+    
     book_id = random.randint(1, 1000000000)
     print(book_id)
     addNameBook = request.form.get('name-book')
@@ -179,6 +180,42 @@ def add_book_data():
         return render_template('UiMainPage.html')
     return render_template('UiMainPage.html')
 
+@app.route('/delete_book', methods=['post'])
+def delete_book_data():
+    #deleteIdBook = request.form.get('id-book')
+    #imgSrc = f"static/image/book_{book_id}.jpg"
+    #book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addCategoryBook,addPriceBook,0,imgSrc)
+    
+
+    deleteIdBook = int(request.form.get('book-id'))
+    path = f"static/image/book_{deleteIdBook}.jpg"
+    deleteCategoryBook = request.form.get('category')
+    if deleteCategoryBook == "Comic":
+        os.remove(path)
+        libraryComic.delete(deleteIdBook)
+        libraryComic.save_to_file("Comic")
+        return render_template('UiMainPage.html')
+    elif deleteCategoryBook == "Fiction":
+        os.remove(path)
+        libraryFiction.delete(deleteIdBook)
+        libraryFiction.save_to_file("Fiction")
+        return render_template('UiMainPage.html')
+    elif deleteCategoryBook == "Horror":
+        os.remove(path)
+        libraryHorror.delete(deleteIdBook)
+        libraryHorror.save_to_file("Horror")
+        return render_template('UiMainPage.html')
+    elif deleteCategoryBook == "Learning":
+        os.remove(path)
+        libraryLearning.delete(deleteIdBook)
+        libraryLearning.save_to_file("Learning")
+        return render_template('UiMainPage.html')
+    elif deleteCategoryBook == "Romance":
+        os.remove(path)
+        libraryRomance.delete(deleteIdBook)
+        libraryRomance.save_to_file("Romance")
+        return render_template('UiMainPage.html')
+    return render_template('UiMainPage.html')
 
 
 

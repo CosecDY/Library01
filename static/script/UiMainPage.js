@@ -99,7 +99,7 @@ function createFeaturedBooks(bookData, categories) {
     featuredBooksContainer.className = 'featured_boks';
 
     featuredBooksContainer.style.width = '100%';
-    featuredBooksContainer.style.height = '100vh';
+    featuredBooksContainer.style.height = '100%';
     featuredBooksContainer.style.overflowX = 'auto'; 
     
 
@@ -116,7 +116,7 @@ function createFeaturedBooks(bookData, categories) {
     featuredBookBox.className = 'featured_book_box';
     featuredBookBox.style.display = 'flex';
     featuredBookBox.style.width = '100%';
-    featuredBookBox.style.height = '420px';
+    featuredBookBox.style.height = '530px';
     featuredBookBox.style.padding = '0 20px';
     featuredBookBox.style.display = 'grid';
     featuredBookBox.style.overflow = 'hidden';
@@ -126,7 +126,7 @@ function createFeaturedBooks(bookData, categories) {
       const featuredBookCard = document.createElement('div');
       featuredBookCard.className = 'featured_book_card';
       featuredBookCard.style.width = '250px';
-      featuredBookCard.style.height = '420px';
+      featuredBookCard.style.height = '530px';
       featuredBookCard.style.textAlign = 'center';
       featuredBookCard.style.padding = '5px';
       featuredBookCard.style.border = '1px solid #919191';
@@ -154,10 +154,12 @@ function createFeaturedBooks(bookData, categories) {
   
       const h2 = document.createElement('h4');
       h2.textContent = bookInfo.nameBook;
+      h2.style.fontSize = '20px'
   
       const writer = document.createElement('p');
       writer.className = 'writer';
       writer.textContent = bookInfo.writer;
+      writer.style.fontSize = '16px'
   
       const categories = document.createElement('div');
       categories.className = 'categories';
@@ -166,6 +168,7 @@ function createFeaturedBooks(bookData, categories) {
       const bookPrice = document.createElement('p');
       bookPrice.className = 'book_price';
       bookPrice.innerHTML = `${bookInfo.price} ฿<sub><del>`;
+      bookPrice.style.fontSize = '18px'
 
       const learnMoreBtn = document.createElement('a');
     
