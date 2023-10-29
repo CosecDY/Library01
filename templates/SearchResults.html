@@ -46,10 +46,7 @@
                     <p class="card-nameBook" style="margin-bottom: 0;">{{book['nameBook']}}</p>
                     <p class="card-price" style="margin-bottom: 0;">Price: {{book['price']}} ฿</p>
                     <p class="card-categories">Category: {{book['category']}}</p>
-                    <!-- <form action='{{url_for("receive_data",book=book)}}' method="POST"> -->
                     <a href="{{ url_for('receive_data', book=book['bookId']) }}" class="btn btn-primary">Learn More</a>
-
-                    <!-- </form> -->
                 </div>
             </div>
         </div>
