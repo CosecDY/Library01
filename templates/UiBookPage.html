@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,7 +20,6 @@
         h1 {
             text-align: center;
         }
-
         .container {
             background-color: #fff;
             padding: 20px;
@@ -33,13 +30,11 @@
             max-width: 1000px;
             box-shadow: 0 0 5px #089da1;
         }
-
         .row {
             display: flex;
             align-items: center;
 
         }
-
         .button {
             background: #089da1;
             color: #fff;
@@ -58,76 +53,44 @@
             cursor: pointer;
             text-decoration: none;
         }
-
         .column {
             flex: 1;
             text-align: left;
             padding: 10px;
         }
-
         #verticle-line {
             border-left: 2px solid #3a3b3c;
             height: 400px;
             margin: 0 40px;
         }
-
         img.center {
             display: block;
             margin: 0 auto;
         }
-
         h1 {
             color: #000000;
             font-size: 42px;
         }
-
         h2 {
             color: #000000;
             font-size: 40px;
         }
-
         h6 {
             color: #919191;
             font-size: 18px;
         }
-
         h3 {
             color: #000000;
             font-size: 24px;
         }
-
         h5 {
             color: #000000;
             font-size: 20px;
         }
     </style>
-
-    <!--
-    <style>
-        .row {
-            display: flex;
-        }
-
-        .column {
-            flex: 50%;
-            padding: 10px;
-        }
-        .center {
-            display: block;
-            margin: auto;
-        }
-
-        .right {
-            display: block;
-            margin-left: auto;
-        }
-    </style>
-    -->
-
 </head>
 
 <body>
-
     <h1>รายละเอียดหนังสือ</h1>
     <hr color="#089da1" size="4" />
     <div class="container">
@@ -149,44 +112,10 @@
                     <a class="button" id="buyId" href="/send_buy?param1={{book['bookId']}}">Buy</a>
 
                     <a class="button" href="/main_page" style="color: white; text-decoration: none;">Back</a>
-                    <!--
-                    <form action="" method="">
-
-                        <button class="button" type="submit">Like</button>
-
-                    </form>
-                    <form action="" method="">
-
-                        <button class="button" type="submit">Buy</button>
-
-                    </form>
-                    -->
                 </div>
             </div>
         </div>
     </div>
-
-    <!--
-    <h1 style="text-align: center;">รายละเอียดหนังสือ</h1>
-    <hr color="#000000";" size = "4"/>
-    <div class="row">
-        <div class="column">
-            <img src="/{{book['imgSrc']}}" alt="{{book['nameBook']}}" width="165px" height="240px" class="center">
-        </div>
-        <div id="verticle-line"></div>
-        <div class="column">
-            <h2>{{book['nameBook']}}</h2>
-            <h6 style="color: #ababab">Author : {{book['writer']}}</h6>
-            <h3>Catecory : {{book['categories']}}</h3>
-            <h5>Likes : {{book['totalLikes']}}</h5>
-            <h3>Price : {{book['price']}} ฿</h3>
-            
-        </div>
-    </div>
-    -->
-
-
-    <!--<script  src="{{ url_for('static', filename='/script/UiBookPage.js') }}"></script>-->
 </body>
 
 </html>

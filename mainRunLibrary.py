@@ -62,7 +62,6 @@ def load_user_data():
 
     return users
 
-
 def save_user_data(users):
     current_directory = os.getcwd()
     file_path = os.path.join(current_directory,'static/UsernamePassword.txt')
@@ -71,19 +70,13 @@ def save_user_data(users):
             line = f"username: {user['username']}, password: {user['password']}\n"
             outputFile.write(line)
         
-
-
 def generate_random_password(length=12):
     characters = string.ascii_letters + string.digits + string.punctuation
     return ''.join(random.choice(characters) for _ in range(length))
 
-# Routes
 @app.route('/register_page', methods=['GET', 'POST'])
-def register():
-      
-    
+def register():  
     if request.method == 'POST':
-        
         username = request.form.get('username')
         password = request.form.get('password')
         confirm_password = request.form.get('Confirm_password')
@@ -91,7 +84,6 @@ def register():
             users = load_user_data()
             users.append({'username': username, 'password': password})
             save_user_data(users)
-
             flash('Registration successful!')
             return redirect(url_for('login'))
         else:
@@ -109,26 +101,21 @@ def login():
         username = request.form.get('username')
         password = request.form.get('password')
         users = load_user_data()
-    
+
         user = next((u for u in users if u['username'] == username and u['password'] == password), None)
         
         if user is not None:
             return render_template('UiMainPage.html', username=username)
-        
         else:
             return render_template('UiLoginPage.html')
-
     return render_template('UiLoginPage.html')
-
 
 @app.route('/forgot_password', methods=['GET', 'POST'])
 def forgot_password():
     if request.method == 'POST':
         username = request.form.get('username')
         users = load_user_data()
-        
         user = next((u for u in users if u['username'] == username), None)
-
         if user:
             new_password = generate_random_password()
             user['password'] = new_password
@@ -141,9 +128,6 @@ def forgot_password():
 
     return render_template('UiForgotPasswordPage.html')
 
-
-
-#######################################################################################
 @app.route('/add_book', methods=['post'])
 def add_book_data():
     
@@ -158,39 +142,19 @@ def add_book_data():
     image = request.files['formFile']
     imgSrc = f"/static/image/book_{book_id}.jpg"  
 
-   
     if 'formFile' not in request.files:
         return 'No file part'
-
     image = request.files['formFile']
-
     if image.filename == '':
         return 'No selected file'
 
     allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
-
     if '.' in image.filename and image.filename.rsplit('.', 1)[1].lower() in allowed_extensions:
         upload_folder = 'static/image'
         os.makedirs(upload_folder, exist_ok=True)
-
         imgSrcFile = f"book_{book_id}.jpg"  
 
         image.save(os.path.join(upload_folder, imgSrcFile))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addCategoryBook,addPriceBook,0,imgSrc)
     if addCategoryBook == "Comic":
@@ -217,11 +181,6 @@ def add_book_data():
 
 @app.route('/delete_book', methods=['post'])
 def delete_book_data():
-    #deleteIdBook = request.form.get('id-book')
-    #imgSrc = f"static/image/book_{book_id}.jpg"
-    #book = Book(book_id,addNameBook,addAvailableBook,addAuthorBook,addCategoryBook,addPriceBook,0,imgSrc)
-    
-
     deleteIdBook = int(request.form.get('book-id'))
     path = f"static/image/book_{deleteIdBook}.jpg"
     deleteCategoryBook = request.form.get('category')
@@ -252,21 +211,6 @@ def delete_book_data():
         return render_template('UiMainPage.html')
     return render_template('UiMainPage.html')
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/api/book_data', methods=['GET'])
 def get_book_data():
     return jsonify(data=book_data)
@@ -287,23 +231,6 @@ def calculate_top_books():
 
 topBookdata = calculate_top_books()
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @app.route('/api/top_book_data', methods=['GET'])
 def get_top_book_data():
     return jsonify(data=topBookdata)
@@ -321,27 +248,6 @@ def search_books():
     group_items=[matched_books[i:i+5] for i in range(0,len(matched_books),5)]
     return render_template('SearchResults.html', data=group_items)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 def callUibook(bookId):
     return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
 
@@ -352,7 +258,6 @@ def send_like():
     if libraryComic.search(bookId):
         libraryComic.search(bookId).data.totalLikes+=1
         libraryComic.save_to_file("Comic")
-        #return redirect(url_for('send_data',book = libraryComic.search(bookId).data.to_json()))
         return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
     elif libraryFiction.search(bookId):
         libraryFiction.search(bookId).data.totalLikes+=1
@@ -433,28 +338,6 @@ def receive_data(book):
        return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
     else:
         return "not found"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     app.run(debug=True)
