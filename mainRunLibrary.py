@@ -1,5 +1,5 @@
 import random
-from flask import Flask, jsonify, redirect, render_template, request,url_for,flash
+from flask import Flask, jsonify, redirect, render_template, request,url_for,flash,redirect
 from Library import *
 import secrets
 import string
@@ -98,6 +98,10 @@ def register():
             return render_template('UiRegisterPage.html')
 
     return render_template('UiRegisterPage.html')
+
+@app.route('/main_page')
+def mainpage():
+    return render_template('UiMainPage.html')
 
 @app.route('/login_page', methods=['GET', 'POST'])
 def login():
@@ -338,8 +342,64 @@ def search_books():
 
 
 
+def callUibook(bookId):
+    return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
 
-
+@app.route('/send_like')
+def send_like():
+    param1 = request.args.get('param1')
+    bookId = int(param1)
+    if libraryComic.search(bookId):
+        libraryComic.search(bookId).data.totalLikes+=1
+        libraryComic.save_to_file("Comic")
+        #return redirect(url_for('send_data',book = libraryComic.search(bookId).data.to_json()))
+        return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
+    elif libraryFiction.search(bookId):
+        libraryFiction.search(bookId).data.totalLikes+=1
+        libraryFiction.save_to_file("Fiction")
+        return render_template('UiBookPage.html',book = libraryFiction.search(bookId).data.to_json())
+    elif libraryHorror.search(bookId):
+        libraryHorror.search(bookId).data.totalLikes+=1
+        libraryHorror.save_to_file("Horror")
+        return render_template('UiBookPage.html',book = libraryHorror.search(bookId).data.to_json())
+    elif libraryLearning.search(bookId):
+        libraryLearning.search(bookId).data.totalLikes+=1
+        libraryLearning.save_to_file("Learning")
+        return render_template('UiBookPage.html',book = libraryLearning.search(bookId).data.to_json())
+    elif libraryRomance.search(bookId):
+        libraryRomance.search(bookId).data.totalLikes+=1
+        libraryRomance.save_to_file("Romance")
+        return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
+    else:
+        return "not found"
+    
+@app.route('/send_buy')
+def send_buy():
+    param1 = request.args.get('param1')
+    bookId = int(param1)
+    if libraryComic.search(bookId):
+        libraryComic.search(bookId).data.availableQuantity-=1
+        libraryComic.save_to_file("Comic")
+        #return redirect(url_for('send_data',book = libraryComic.search(bookId).data.to_json()))
+        return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
+    elif libraryFiction.search(bookId):
+        libraryFiction.search(bookId).data.availableQuantity-=1
+        libraryFiction.save_to_file("Fiction")
+        return render_template('UiBookPage.html',book = libraryFiction.search(bookId).data.to_json())
+    elif libraryHorror.search(bookId):
+        libraryHorror.search(bookId).data.availableQuantity-=1
+        libraryHorror.save_to_file("Horror")
+        return render_template('UiBookPage.html',book = libraryHorror.search(bookId).data.to_json())
+    elif libraryLearning.search(bookId):
+        libraryLearning.search(bookId).data.availableQuantity-=1
+        libraryLearning.save_to_file("Learning")
+        return render_template('UiBookPage.html',book = libraryLearning.search(bookId).data.to_json())
+    elif libraryRomance.search(bookId):
+        libraryRomance.search(bookId).data.availableQuantity-=1
+        libraryRomance.save_to_file("Romance")
+        return render_template('UiBookPage.html',book = libraryRomance.search(bookId).data.to_json())
+    else:
+        return "not found"
 
 @app.route('/send_data')
 def send_data():
