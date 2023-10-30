@@ -42,7 +42,7 @@ class Library:
         if node is None:
             return TreeNode(book)
         
-        if book.bookId == node.data.bookId:
+        if book.nameBook == node.data.nameBook:
             node.right = self._insert_recursive(node.right, book)
         elif book.bookId < node.data.bookId:
             node.left = self._insert_recursive(node.left, book)
