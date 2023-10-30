@@ -285,7 +285,6 @@ def send_buy():
     if libraryComic.search(bookId):
         libraryComic.search(bookId).data.availableQuantity-=1
         libraryComic.save_to_file("Comic")
-        #return redirect(url_for('send_data',book = libraryComic.search(bookId).data.to_json()))
         return render_template('UiBookPage.html',book = libraryComic.search(bookId).data.to_json())
     elif libraryFiction.search(bookId):
         libraryFiction.search(bookId).data.availableQuantity-=1
