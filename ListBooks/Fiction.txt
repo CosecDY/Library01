@@ -1,7 +1,7 @@
-8,To Kill a Mockingbird,422,Harper Lee,99,1000000
-9,1984,270,George Orwell,99,100
-10,The Great Gatsby,272,F. Scott Fitzgerald,99,100
-11,Brave New World,295,Aldous Huxley,99,100
-12,The Catcher in the Rye,329,J.D. Salinger,99,100
-13,The Handmaid's Tale,450,Margaret Atwood,99,100
-14,The Alchemist,213,Paulo Coelho,99,100    
+8,To Kill a Mockingbird,99,Harper Lee,422,1000000
+9,1984,99,George Orwell,270,100
+10,The Great Gatsby,99,F. Scott Fitzgerald,272,100
+11,Brave New World,99,Aldous Huxley,295,100
+12,The Catcher in the Rye,99,J.D. Salinger,329,100
+13,The Handmaid's Tale,99,Margaret Atwood,450,100
+14,The Alchemist,99,Paulo Coelho,213,100    

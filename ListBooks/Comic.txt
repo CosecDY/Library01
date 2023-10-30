@@ -1,7 +1,10 @@
-1,Boruto,115,Masashi Kishimoto,99.0,100000
-2,Onepiece,40,Eiichiro Oda,99.0,1001
-3,Conan,85,Aoyama Yoshimasa,99.0,413
-4,Doraemon,169,Fujiko Fujio,99.0,105
-5,Mickey Mouse,250,Ub Iwerks,99.0,1000
-6,Ben 10,39,Man of Action,99.0,1000
-7,Dragon Ball,95,Akira Toriyama,99.0,1000
+1,Boruto,99,Masashi Kishimoto,115.0,100000
+2,Onepiece,99,Eiichiro Oda,40.0,1001
+3,Conan,99,Aoyama Yoshimasa,86.0,404
+4,Doraemon,99,Fujiko Fujio,169.0,100
+5,Mickey Mouse,99,Ub Iwerks,250.0,1000
+6,Ben 10,99,Man of Action,39.0,1000
+7,Dragon Ball,99,Akira Toriyama,95.0,1000
+227579555,abcv,12,ioio,23.0,0
+616139083,abcv,12,ioio,23.0,0
+
