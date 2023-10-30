@@ -1,7 +1,7 @@
-15,The Sentinel,285,Lee Child and Andrew Child,99,1000
-16,The Phantom of the Opera,295,Gaston Leroux,99,100
-17,MINDHUNTER,425,John E. Douglas and Mark Olshaker,99,100
-18,Peril at End House,220,อกาธา (อากาธา) คริสตี้,99,100
-19,RAGDOLL,395,แดเนียล โคล,99,100
-20,CARDS ON THE TABLE,240,อกาธา (อากาธา) คริสตี้,99,10000
-21, MISERY,335,Stephen King,99,100
+15,The Sentinel,99,Lee Child and Andrew Child,285.0,1000
+16,The Phantom of the Opera,99,Gaston Leroux,295.0,100
+17,MINDHUNTER,99,John E. Douglas and Mark Olshaker,425.0,100
+18,Peril at End House,99,อกาธา (อากาธา) คริสตี้,220.0,100
+19,RAGDOLL,99,แดเนียล โคล,395.0,100
+20,CARDS ON THE TABLE,99,อกาธา (อากาธา) คริสตี้,240.0,10000
+21, MISERY,99,Stephen King,335.0,100

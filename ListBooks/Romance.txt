@@ -1,7 +1,7 @@
-29,The Notebook,270,Nicholas Sparks,99,100
-30,Pride and Prejudice,119,Jane Austen,99,100
-31,Outlander,769,Diana Gabaldon,99,100
-32,The Fault in Our Stars,190,John Green,99,100
-33,Me Before You,370,Jojo Moyes,99,100
-34,The Rosie Project,247,Graeme Simsion,99,100
-35,One Day,350,David Nicholls,99,100
+29,The Notebook,99,Nicholas Sparks,270.0,100
+30,Pride and Prejudice,99,Jane Austen,119.0,100
+31,Outlander,99,Diana Gabaldon,769.0,100
+32,The Fault in Our Stars,99,John Green,190.0,100
+33,Me Before You,99,Jojo Moyes,370.0,100
+34,The Rosie Project,99,Graeme Simsion,247.0,100
+35,One Day,99,David Nicholls,350.0,100
