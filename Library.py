@@ -41,10 +41,14 @@ class Library:
     def _insert_recursive(self, node, book):
         if node is None:
             return TreeNode(book)
-        if book.bookId < node.data.bookId:
+        
+        if book.bookId == node.data.bookId:
+            node.right = self._insert_recursive(node.right, book)
+        elif book.bookId < node.data.bookId:
             node.left = self._insert_recursive(node.left, book)
         else:
             node.right = self._insert_recursive(node.right, book)
+        
         return node
 
     def search(self, book_id):

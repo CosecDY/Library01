@@ -6,5 +6,4 @@
 6,Ben 10,99,Man of Action,39.0,1000
 7,Dragon Ball,99,Akira Toriyama,95.0,1000
 5013058,test,123,test,213213,0
-227579555,abcv,12,ioio,23.0,0
-616139083,abcv,12,ioio,23.0,0
+
