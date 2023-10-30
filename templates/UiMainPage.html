@@ -32,10 +32,14 @@
       <div class="social_icon">
         <i class="fa-solid fa-magnifying-glass"></i>
         <i class="fa-solid fa-heart"></i>
+
+        {% if username == "admin" %}
         <button color="black" type="button" class="left_button" data-bs-toggle="modal" data-bs-target="#exampleModal"
           data-bs-whatever="@mdo">Add book</button>
         <button color="black" type="button" class="middle_button" data-bs-toggle="modal" data-bs-target="#exampleModal1"
           data-bs-whatever="@mdo">Delete book</button>
+        {% endif %}
+        
 
 
         <button type="button">
@@ -70,12 +74,6 @@
 
 
       </div>
-      <!--
-            <div class="log_in_button">
-                <button type="button">Log in</button>
-                <button type="button">Log out</button>
-            </div>
-            -->
     </nav>
 
     <form action="/add_book" method="post">
